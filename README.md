@@ -21,9 +21,11 @@ Git for Windows Desktop is a GUI that can be used instead of commands.
 
 If you do use commands, you can get Git Shell for Windows or use terminal for Linux/MacOS.
 
+When using NetBeans, you will want to import existing/git projects where you will find the clone on your local machine or possibly the online git repo URL.
+
 "git init" : First time setup, do this in a directory meant for the project.
 
-"git remote add origin https://github.com/henryh1570/Swing-Project.git" : First time to clone the origin branch to your machine.
+"git remote add origin https://github.com/henryh1570/Swing-Project.git" : First time to specify what repo to push to. Probably not origin if using separate branches.
 
 "git status" : Shows you what files/directories are tracked for the project if there are any changes made.
 
