@@ -17,7 +17,7 @@ public class Hangman {
      */
     public static void main(String[] args) {
         System.out.println("Hello!");
-        CreditScreen cScreen = new CreditScreen("Credits");
+        HighscoreScreen cScreen = new HighscoreScreen();
         cScreen.setSize(600,400);
         cScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cScreen.setVisible(true);
