@@ -31,6 +31,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Highscores");
         setBounds(new java.awt.Rectangle(0, 0, 600, 400));
 
         jButton1.setText("Back");
@@ -42,6 +43,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Dyuthi", 1, 48));
+        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HIGHSCORES");
         jLabel1.setToolTipText("");
