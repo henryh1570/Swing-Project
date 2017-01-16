@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hangman;
+import javax.swing.*;
 
 /**
  *
@@ -15,7 +16,11 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("Hello!");
+        CreditScreen cScreen = new CreditScreen("Credits");
+        cScreen.setSize(600,400);
+        cScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cScreen.setVisible(true);
     }
     
 }
