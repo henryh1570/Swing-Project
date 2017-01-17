@@ -25,6 +25,20 @@ public class Hangman {
         Title t = new Title();
         MenuScreen mScreen = new MenuScreen();
         
+//        WordBank wb = new WordBank();
+//        
+//        System.out.println(wb.getWord());
+//        System.out.println(wb.getWordFormat());
+//        System.out.println(wb.getWord());
+//        System.out.println(wb.getWordFormat());
+//        System.out.println(wb.getWord());
+//        System.out.println(wb.getWordFormat());
+//        System.out.println(wb.getWord());
+//      System.out.println(wb.getWordFormat());
+//        System.out.println(wb.getWord());
+//         System.out.println(wb.getWordFormat());
+   
+        
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         
         //display title screen first.
