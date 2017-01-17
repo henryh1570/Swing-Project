@@ -5,11 +5,18 @@
  */
 package hangman;
 
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 /**
  *
  * @author hh
  */
 public class MenuScreen extends javax.swing.JFrame {
+    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 
     /**
      * Creates new form MenuScreen
@@ -17,6 +24,7 @@ public class MenuScreen extends javax.swing.JFrame {
     public MenuScreen() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,15 +119,33 @@ public class MenuScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(evt.getActionCommand().equals("PLAY")) {
+            PlayScreen pScreen = new PlayScreen();
+            pScreen.setVisible(true);
+            pScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            pScreen.setSize(600, 400);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if(evt.getActionCommand().equals("HIGHSCORES")) {
+            HighscoreScreen hScreen = new HighscoreScreen();
+            hScreen.setVisible(true);
+            hScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            hScreen.setSize(600, 400);
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if(evt.getActionCommand().equals("CREDITS")) {
+            CreditScreen cScreen = new CreditScreen();
+            cScreen.setSize(600,400);
+            cScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            cScreen.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -148,6 +174,7 @@ public class MenuScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+      
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
