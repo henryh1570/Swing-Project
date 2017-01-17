@@ -44,18 +44,6 @@ public class Hangman {
         } catch(InterruptedException e){
             
         }
-        
-        
-//        mScreen.setSize(600,400);
-//        mScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        mScreen.setVisible(true);
-//        
-        //hScreen.setSize(600,400);
-        //hScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //hScreen.setVisible(true);
-        //cScreen.setSize(600,400);
-        //cScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //cScreen.setVisible(true);
     }
     
 }
