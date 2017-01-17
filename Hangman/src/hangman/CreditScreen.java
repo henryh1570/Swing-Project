@@ -5,11 +5,15 @@
  */
 package hangman;
 
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+
 /**
  *
  * @author hh
  */
 public class CreditScreen extends javax.swing.JFrame {
+    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 
     /**
      * Creates new form CreditScreen
@@ -119,7 +123,13 @@ public class CreditScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(evt.getActionCommand().equals("Back")) {
+            MenuScreen mScreen = new MenuScreen();
+            mScreen.setVisible(true);
+            mScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            mScreen.setSize(600, 400);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

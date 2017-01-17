@@ -31,8 +31,11 @@ public class HighscoreScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Highscores");
@@ -191,6 +194,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+    private javax.swing.JLabel jLabel2;
     private final javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
