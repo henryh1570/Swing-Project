@@ -5,12 +5,16 @@
  */
 package hangman;
 
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+
 /**
  *
  * @author hh
  */
 public class HighscoreScreen extends javax.swing.JFrame {
-
+    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    
     /**
      * Creates new form CreditScreen
      */
@@ -35,6 +39,11 @@ public class HighscoreScreen extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 600, 400));
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,7 +127,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +141,16 @@ public class HighscoreScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(evt.getActionCommand().equals("Back")) {
+            MenuScreen mScreen = new MenuScreen();
+            mScreen.setVisible(true);
+            mScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            mScreen.setSize(600, 400);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

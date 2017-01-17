@@ -5,6 +5,8 @@
  */
 package hangman;
 import javax.swing.*;
+import java.awt.Point;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -16,17 +18,38 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+ 
         System.out.println("Hello!");
         HighscoreScreen hScreen = new HighscoreScreen();
         CreditScreen cScreen = new CreditScreen();
         Title t = new Title();
         MenuScreen mScreen = new MenuScreen();
-        mScreen.setSize(600,400);
-        mScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mScreen.setVisible(true);
-        //t.setSize(600,400);
-        //t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //t.setVisible(true);
+        
+        Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        
+        //display title screen first.
+        t.setSize(600,400);
+        t.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+        t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        t.setVisible(true);
+        
+        try{
+            Thread.sleep(3000);
+            mScreen.setSize(600,400);
+            mScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            t.dispose();
+            mScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            mScreen.setVisible(true);
+            
+        } catch(InterruptedException e){
+            
+        }
+        
+        
+//        mScreen.setSize(600,400);
+//        mScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        mScreen.setVisible(true);
+//        
         //hScreen.setSize(600,400);
         //hScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //hScreen.setVisible(true);
@@ -34,4 +57,5 @@ public class Hangman {
         //cScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //cScreen.setVisible(true);
     }
+    
 }
