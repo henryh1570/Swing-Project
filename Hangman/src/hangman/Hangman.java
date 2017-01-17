@@ -18,8 +18,9 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
- 
-        System.out.println("Hello!");
+        
+
+        System.out.println("Starting Hangman!");
         HighscoreScreen hScreen = new HighscoreScreen();
         CreditScreen cScreen = new CreditScreen();
         Title t = new Title();
@@ -44,6 +45,8 @@ public class Hangman {
         } catch(InterruptedException e){
             
         }
+        
+        System.out.println("Hangman is done. :(");
     }
     
 }

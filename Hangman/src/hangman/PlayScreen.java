@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,10 @@ import javax.swing.JOptionPane;
 public class PlayScreen extends javax.swing.JFrame {
     public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     private final int MAX_GUESSES = 6;
+    private String[] words = {"abstract", "cemetery", "nurse", "pharmacy", "climbing" };
+    private String word; // Store word
+    
+    
     /**
      * Creates new form PlayScreen
      */
@@ -27,8 +32,23 @@ public class PlayScreen extends javax.swing.JFrame {
         initComponents();
         currentTime();
         currentDate();
+        chooseWord(); 
     }
     
+    /**
+     * Choose a word randomly from the list of words
+     */
+    public void chooseWord() {
+        System.out.println("Beginning a game of Hangman");
+        
+        // Choose word at random from list of words
+        Random rand = new Random();
+        int randIndex = rand.nextInt(words.length);
+        String word = words[randIndex];
+        
+        System.out.println("Word: "+words[randIndex]);
+        
+    }
     
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
