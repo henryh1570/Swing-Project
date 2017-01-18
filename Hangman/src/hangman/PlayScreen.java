@@ -43,9 +43,6 @@ public class PlayScreen extends javax.swing.JFrame {
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
         Calendar cal = new GregorianCalendar();
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int year = cal.get(Calendar.YEAR);
         Date today = new Date();
         String date = sdf.format(today);
         jLabel2.setText(date);
@@ -56,6 +53,9 @@ public class PlayScreen extends javax.swing.JFrame {
      * This method updates the seconds, that way you can see the seconds change in the clock
      */
 
+    /**
+     * This Method loops indefinitely to update clock every 1000 milliseconds.
+     */
      public void currentTime() {
         Thread clock = new Thread() {
             public void run() {
@@ -65,6 +65,7 @@ public class PlayScreen extends javax.swing.JFrame {
                     int minute = cal.get(Calendar.MINUTE);
                     int hour = cal.get(Calendar.HOUR);
                     jLabel3.setText(hour + ":" + minute + ":" + second);
+                    
                     try{
                         sleep(1000);
                     } catch (Exception e) {
@@ -78,7 +79,6 @@ public class PlayScreen extends javax.swing.JFrame {
     }
      
     public void displayWordFormat() {
-//        WordBank wb = new WordBank();
         String word = wb.getWord();
         String hint = wb.getWordFormat();
         
