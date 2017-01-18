@@ -105,7 +105,6 @@ public class PlayScreen extends javax.swing.JFrame {
         int numGuesses = cw.numGuesses;
         jLabel6.setText(guessedString);
         if (numWrong > 0 && !guess) {
-            System.out.println("i am in wrong");
             if(numWrong <= maxWrong) {
                 switch (numWrong) {
                     case 1:
@@ -141,10 +140,8 @@ public class PlayScreen extends javax.swing.JFrame {
                 wrongLabel.setText("Incorrect!");
             } 
         } else if (guess) {
-            System.out.println("i am in correct");
             wrongLabel.setText("Correct!");
             boolean win = cw.checkGuesses();
-            System.out.println("win? " + win);
             if(cw.checkGuesses()) {
                 sScreen.setScore(score);
                 sScreen.setVisible(true);
