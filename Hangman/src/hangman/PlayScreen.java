@@ -27,6 +27,9 @@ public class PlayScreen extends javax.swing.JFrame {
     public String wordToGuess;
     public String wordToGuessFormat;
     public String guessedString;
+    private int numWrong = 0;
+    private final int maxWrong = 6;
+    private String score;
    
     
     /**
@@ -94,6 +97,42 @@ public class PlayScreen extends javax.swing.JFrame {
     public void displayGuessedString() {
         System.out.println("guessed string: " + guessedString);
         jLabel6.setText(guessedString);
+        if (guessedString == "") {
+            numWrong++;
+            if(numWrong <= maxWrong) {
+                switch (numWrong) {
+                    case 1:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo1.png"))); // NOI18N
+                        score = "90";
+                        break;
+                    case 2:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo2.png"))); // NOI18N
+                        score = "80";
+                        break;
+                    case 3:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo2.5.png"))); // NOI18N
+                        score = "70";
+                        break;
+                    case 4:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo3.png"))); // NOI18N
+                        score = "60";
+                        break;
+                    case 5:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo4.png"))); // NOI18N
+                        score = "50";
+                        break;
+                    case 6:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
+                        score = "40";
+                        SkipScreen sScreen = new SkipScreen();
+                        sScreen.setScore(score);
+                        sScreen.setVisible(true);
+                        dispose();
+                        break;
+                }
+                jLabel7.setText(score);
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,6 +180,8 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,8 +199,8 @@ public class PlayScreen extends javax.swing.JFrame {
         });
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 70, 50));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 200, 190));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
@@ -433,6 +474,15 @@ public class PlayScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 210, 40));
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel7.setText("100");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 60, 50));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 255, 0));
+        jLabel8.setText("Score:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 50));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -445,6 +495,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
             SkipScreen sScreen = new SkipScreen();
+            sScreen.setScore(score);
             sScreen.setSize(600,400);
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             sScreen.setVisible(true);
@@ -817,6 +868,8 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

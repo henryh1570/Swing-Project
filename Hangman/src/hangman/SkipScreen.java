@@ -94,6 +94,14 @@ public class SkipScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void setScore(String score) {
+        this.jLabel2.setText(score);
+    }
+    
+    public String getScore() {
+        return this.jLabel2.getText();
+    }
+    
     /**
      * @param args the command line arguments
      */
