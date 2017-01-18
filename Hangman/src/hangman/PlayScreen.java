@@ -44,9 +44,9 @@ public class PlayScreen extends javax.swing.JFrame {
         // Choose word at random from list of words
         Random rand = new Random();
         int randIndex = rand.nextInt(words.length);
-        String word = words[randIndex];
+        this.word = words[randIndex]; 
         
-        System.out.println("Word: "+words[randIndex]);
+        System.out.println("Word: "+this.word);
         
     }
     
