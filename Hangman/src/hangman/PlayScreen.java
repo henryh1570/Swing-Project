@@ -11,8 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+<<<<<<< HEAD
 import java.util.Random;
+=======
+import javax.swing.ImageIcon;
+>>>>>>> master
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,18 +25,25 @@ import javax.swing.JOptionPane;
  */
 public class PlayScreen extends javax.swing.JFrame {
     public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public WordBank wb;
     private final int MAX_GUESSES = 6;
+<<<<<<< HEAD
     private String[] words = {"abstract", "cemetery", "nurse", "pharmacy", "climbing" };
     private String word; // Store word
     
+=======
+    private int num_guesses;
+>>>>>>> master
     
     /**
      * Creates new form PlayScreen
      */
     public PlayScreen() {
+        wb = new WordBank();
         initComponents();
         currentTime();
         currentDate();
+<<<<<<< HEAD
         chooseWord(); 
     }
     
@@ -49,20 +61,31 @@ public class PlayScreen extends javax.swing.JFrame {
         System.out.println("Word: "+this.word);
         
     }
+=======
+        displayWordFormat();
+    }
+    
+    /**
+     * This method gets the current date and forces it to be in the form of January, 17, 2017
+    */
+>>>>>>> master
     
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
         Calendar cal = new GregorianCalendar();
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int year = cal.get(Calendar.YEAR);
         Date today = new Date();
         String date = sdf.format(today);
         jLabel2.setText(date);
         
         
     }
+    /**
+     * This method updates the seconds, that way you can see the seconds change in the clock
+     */
 
+    /**
+     * This Method loops indefinitely to update clock every 1000 milliseconds.
+     */
      public void currentTime() {
         Thread clock = new Thread() {
             public void run() {
@@ -72,6 +95,7 @@ public class PlayScreen extends javax.swing.JFrame {
                     int minute = cal.get(Calendar.MINUTE);
                     int hour = cal.get(Calendar.HOUR);
                     jLabel3.setText(hour + ":" + minute + ":" + second);
+                    
                     try{
                         sleep(1000);
                     } catch (Exception e) {
@@ -83,6 +107,15 @@ public class PlayScreen extends javax.swing.JFrame {
         clock.start();
         
     }
+     
+    public void displayWordFormat() {
+        String word = wb.getWord();
+        String hint = wb.getWordFormat();
+        
+        System.out.println("word: " + word);
+        System.out.println("hint: " + hint);
+        jLabel5.setText(hint);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,139 +125,47 @@ public class PlayScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        buttonA = new javax.swing.JButton();
+        buttonB = new javax.swing.JButton();
+        buttonC = new javax.swing.JButton();
+        buttonD = new javax.swing.JButton();
+        buttonE = new javax.swing.JButton();
+        buttonF = new javax.swing.JButton();
+        buttonG = new javax.swing.JButton();
+        buttonH = new javax.swing.JButton();
+        buttonI = new javax.swing.JButton();
+        buttonJ = new javax.swing.JButton();
+        buttonK = new javax.swing.JButton();
+        buttonL = new javax.swing.JButton();
+        buttonM = new javax.swing.JButton();
+        buttonN = new javax.swing.JButton();
+        buttonO = new javax.swing.JButton();
+        buttonP = new javax.swing.JButton();
+        buttonQ = new javax.swing.JButton();
+        buttonR = new javax.swing.JButton();
+        buttonS = new javax.swing.JButton();
+        buttonT = new javax.swing.JButton();
+        buttonU = new javax.swing.JButton();
+        buttonV = new javax.swing.JButton();
+        buttonW = new javax.swing.JButton();
+        buttonX = new javax.swing.JButton();
+        buttonY = new javax.swing.JButton();
+        buttonZ = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("A");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 50, -1));
-
-        jButton2.setText("B");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 50, -1));
-
-        jButton3.setText("C");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 40, -1));
-
-        jButton4.setText("D");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 50, -1));
-
-        jButton5.setText("E");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 50, -1));
-
-        jButton6.setText("F");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 50, -1));
-
-        jButton7.setText("G");
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 50, -1));
-
-        jButton8.setText("H");
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 50, -1));
-
-        jButton9.setText("I");
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 40, -1));
-
-        jButton10.setText("J");
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 40, -1));
-
-        jButton11.setText("K");
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 50, -1));
-
-        jButton12.setText("L");
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 40, -1));
-
-        jButton13.setText("M");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 50, -1));
-
-        jButton15.setText("N");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
-
-        jButton16.setText("O");
-        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
-
-        jButton17.setText("P");
-        getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
-
-        jButton18.setText("Q");
-        getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
-
-        jButton19.setText("R");
-        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
-
-        jButton20.setText("S");
-        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
-
-        jButton21.setText("T");
-        getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
-
-        jButton22.setText("U");
-        getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
-
-        jButton23.setText("V");
-        getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
-
-        jButton24.setText("W");
-        getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
-
-        jButton26.setText("X");
-        getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
-
-        jButton27.setText("Y");
-        getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
-
-        jButton28.setText("Z");
-        getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, -1, -1));
-
+        jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Hangman");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 20, -1, -1));
 
@@ -247,26 +188,138 @@ public class PlayScreen extends javax.swing.JFrame {
         });
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 70, 50));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel5.setText("word to guess");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+
+        buttonA.setText("A");
+        buttonA.setPreferredSize(new java.awt.Dimension(50, 29));
+        buttonA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAActionPerformed(evt);
+            }
+        });
+        jPanel3.add(buttonA);
+
+        buttonB.setText("B");
+        buttonB.setPreferredSize(new java.awt.Dimension(50, 29));
+        buttonB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBActionPerformed(evt);
+            }
+        });
+        jPanel3.add(buttonB);
+
+        buttonC.setText("C");
+        buttonC.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonC);
+
+        buttonD.setText("D");
+        buttonD.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonD);
+
+        buttonE.setText("E");
+        buttonE.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonE);
+
+        buttonF.setText("F");
+        buttonF.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonF);
+
+        buttonG.setText("G");
+        buttonG.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonG);
+
+        buttonH.setText("H");
+        buttonH.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonH);
+
+        buttonI.setText("I");
+        buttonI.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonI);
+
+        buttonJ.setText("J");
+        buttonJ.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonJ);
+
+        buttonK.setText("K");
+        buttonK.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonK);
+
+        buttonL.setText("L");
+        buttonL.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonL);
+
+        buttonM.setText("M");
+        buttonM.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonM);
+
+        buttonN.setText("N");
+        buttonN.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonN);
+
+        buttonO.setText("O");
+        buttonO.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonO);
+
+        buttonP.setText("P");
+        buttonP.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonP);
+
+        buttonQ.setText("Q");
+        buttonQ.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonQ);
+
+        buttonR.setText("R");
+        buttonR.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonR);
+
+        buttonS.setText("S");
+        buttonS.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonS);
+
+        buttonT.setText("T");
+        buttonT.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonT);
+
+        buttonU.setText("U");
+        buttonU.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonU);
+
+        buttonV.setText("V");
+        buttonV.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonV);
+
+        buttonW.setText("W");
+        buttonW.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonW);
+
+        buttonX.setText("X");
+        buttonX.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonX);
+
+        buttonY.setText("Y");
+        buttonY.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonY);
+
+        buttonZ.setText("Z");
+        buttonZ.setPreferredSize(new java.awt.Dimension(50, 29));
+        jPanel3.add(buttonZ);
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 560, 100));
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    //this is for the skip button
+    /**
+     * This method is for the skip button. When the player clicks "Skip", it will
+     * take them to the Skip Screen where it will display their score as 0 because they
+     * opted out of the game.
+     */
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
             SkipScreen sScreen = new SkipScreen();
@@ -278,33 +331,27 @@ public class PlayScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
+        if(evt.getActionCommand().equals("A")) {
+            System.out.println("i clicked A");
+            ImageIcon icon = new ImageIcon("images/famous_fair.jpg"); 
+            icon.getImage().flush();
+            jLabel4.setIcon(icon);
+            buttonA.setEnabled(false);
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_buttonAActionPerformed
+
+    private void buttonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buttonBActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlayScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlayScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlayScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlayScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -315,36 +362,40 @@ public class PlayScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
+    private javax.swing.JButton buttonA;
+    private javax.swing.JButton buttonB;
+    private javax.swing.JButton buttonC;
+    private javax.swing.JButton buttonD;
+    private javax.swing.JButton buttonE;
+    private javax.swing.JButton buttonF;
+    private javax.swing.JButton buttonG;
+    private javax.swing.JButton buttonH;
+    private javax.swing.JButton buttonI;
+    private javax.swing.JButton buttonJ;
+    private javax.swing.JButton buttonK;
+    private javax.swing.JButton buttonL;
+    private javax.swing.JButton buttonM;
+    private javax.swing.JButton buttonN;
+    private javax.swing.JButton buttonO;
+    private javax.swing.JButton buttonP;
+    private javax.swing.JButton buttonQ;
+    private javax.swing.JButton buttonR;
+    private javax.swing.JButton buttonS;
+    private javax.swing.JButton buttonT;
+    private javax.swing.JButton buttonU;
+    private javax.swing.JButton buttonV;
+    private javax.swing.JButton buttonW;
+    private javax.swing.JButton buttonX;
+    private javax.swing.JButton buttonY;
+    private javax.swing.JButton buttonZ;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

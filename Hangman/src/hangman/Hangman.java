@@ -18,11 +18,14 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
         
 
         System.out.println("Starting Hangman!");
         HighscoreScreen hScreen = new HighscoreScreen();
         CreditScreen cScreen = new CreditScreen();
+=======
+>>>>>>> master
         Title t = new Title();
         MenuScreen mScreen = new MenuScreen();
         
@@ -35,7 +38,7 @@ public class Hangman {
         t.setVisible(true);
         
         try{
-            Thread.sleep(3000);
+            Thread.sleep(3000); 
             mScreen.setSize(600,400);
             mScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             t.dispose();
