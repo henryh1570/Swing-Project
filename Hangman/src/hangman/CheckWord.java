@@ -14,7 +14,6 @@ import java.util.List;
  * @author Y-Uyen
  */
 public class CheckWord {
-//    private final int MAX_GUESSES = 6;
     public int numWrongGuesses;
     public int numGuesses;
     public WordBank wb = new WordBank();
@@ -44,9 +43,6 @@ public class CheckWord {
     public boolean checkLetter(char guessedLetter) {
         char letter = guessedLetter;
         boolean result = false;
-        
-        System.out.println("guessed letter: " + guessedLetter);
-        System.out.println("word to guess: " + wordToGuess);
 
         for(int i = 0; i < wordToGuess.length(); i++) {
             if(wordToGuess.charAt(i) == guessedLetter) {
@@ -65,7 +61,6 @@ public class CheckWord {
             numWrongGuesses++;
             correctlyGuessedFormat = currentGuessedFormat;
         }
-        System.out.println("correct? " + result);
         
         return result;
     }
@@ -80,9 +75,6 @@ public class CheckWord {
         }
         Arrays.sort(guessedLetters);
         Arrays.sort(charsToGuess);
-        
-        System.out.println("guessed: " + Arrays.toString(guessedLetters));
-        System.out.println("correct: " + Arrays.toString(charsToGuess));
         
         result = Arrays.equals(charsToGuess, guessedLetters);
         return result;
