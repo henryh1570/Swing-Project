@@ -34,7 +34,6 @@ public class PlayScreen extends javax.swing.JFrame {
      */
     public PlayScreen() {
         wb = new WordBank();
-        cw = new CheckWord();
         initComponents();
         currentTime();
         currentDate();
@@ -86,7 +85,7 @@ public class PlayScreen extends javax.swing.JFrame {
     public void displayWordFormat() {
         wordToGuess = wb.getWord();
         wordToGuessFormat = wb.getWordFormat();
-        
+        cw = new CheckWord(wordToGuess, wordToGuessFormat);
         System.out.println("word: " + wordToGuess);
         System.out.println("hint: " + wordToGuessFormat);
         jLabel5.setText(wordToGuessFormat);
@@ -192,63 +191,163 @@ public class PlayScreen extends javax.swing.JFrame {
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 40, -1));
 
         jButton7.setText("G");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
 
         jButton8.setText("H");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 50, -1));
 
         jButton9.setText("I");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 40, -1));
 
         jButton10.setText("J");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 50, -1));
 
         jButton11.setText("K");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 50, -1));
 
         jButton12.setText("L");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 50, -1));
 
         jButton13.setText("M");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         jButton15.setText("N");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         jButton16.setText("O");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
 
         jButton17.setText("P");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
         jButton18.setText("Q");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         jButton19.setText("R");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
 
         jButton20.setText("S");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
 
         jButton21.setText("T");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         jButton22.setText("U");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
 
         jButton23.setText("V");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, -1, -1));
 
         jButton24.setText("W");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
 
         jButton26.setText("X");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jButton27.setText("Y");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
 
         jButton28.setText("Z");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
@@ -278,11 +377,10 @@ public class PlayScreen extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel6.setText("guesses");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -379,6 +477,246 @@ public class PlayScreen extends javax.swing.JFrame {
             System.out.println("nope");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if(evt.getActionCommand().equals("G")) {
+            letter = 'g';
+            jButton7.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if(evt.getActionCommand().equals("H")) {
+            letter = 'h';
+            jButton8.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if(evt.getActionCommand().equals("I")) {
+            letter = 'i';
+            jButton9.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(evt.getActionCommand().equals("J")) {
+            letter = 'j';
+            jButton10.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if(evt.getActionCommand().equals("K")) {
+            letter = 'k';
+            jButton11.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        if(evt.getActionCommand().equals("L")) {
+            letter = 'l';
+            jButton12.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if(evt.getActionCommand().equals("M")) {
+            letter = 'm';
+            jButton13.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        if(evt.getActionCommand().equals("N")) {
+            letter = 'n';
+            jButton15.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        if(evt.getActionCommand().equals("O")) {
+            letter = 'o';
+            jButton15.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        if(evt.getActionCommand().equals("P")) {
+            letter = 'p';
+            jButton17.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        if(evt.getActionCommand().equals("Q")) {
+            letter = 'q';
+            jButton18.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        if(evt.getActionCommand().equals("R")) {
+            letter = 'r';
+            jButton19.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        if(evt.getActionCommand().equals("S")) {
+            letter = 's';
+            jButton20.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        if(evt.getActionCommand().equals("T")) {
+            letter = 't';
+            jButton20.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        if(evt.getActionCommand().equals("U")) {
+            letter = 'u';
+            jButton22.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        if(evt.getActionCommand().equals("V")) {
+            letter = 'v';
+            jButton23.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        if(evt.getActionCommand().equals("W")) {
+            letter = 'w';
+            jButton24.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        if(evt.getActionCommand().equals("X")) {
+            letter = 'x';
+            jButton24.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        if(evt.getActionCommand().equals("Y")) {
+            letter = 'y';
+            jButton27.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        if(evt.getActionCommand().equals("Z")) {
+            letter = 'z';
+            jButton28.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
 
     /**
      * @param args the command line arguments

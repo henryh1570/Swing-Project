@@ -19,9 +19,9 @@ public class CheckWord {
     public char[] charsToGuess;
 
     
-    public CheckWord() {      
-        wordToGuess = wb.getWord();
-        String wordToGuessFormat = wb.getWordFormat();
+    public CheckWord(String word, String format) {      
+        wordToGuess = word;
+        String wordToGuessFormat = format;
         charsToGuess = wordToGuessFormat.toCharArray();
         for(int i = 0; i < charsToGuess.length; i++) {
             if(charsToGuess[i] == '_') {

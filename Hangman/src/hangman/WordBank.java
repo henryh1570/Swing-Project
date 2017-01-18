@@ -34,10 +34,10 @@ public class WordBank {
     public WordBank() {
         wordBank = new ArrayList<>();
         wordBank.add("abstract");
-//        wordBank.add("cemetery");
-//        wordBank.add("nurse");
-//        wordBank.add("pharmacy");
-//        wordBank.add("climbing");
+        wordBank.add("cemetery");
+        wordBank.add("nurse");
+        wordBank.add("pharmacy");
+        wordBank.add("climbing");
         
         size = wordBank.size(); 
         iterator = 0;
