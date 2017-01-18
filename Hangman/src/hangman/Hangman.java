@@ -18,26 +18,8 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
- 
-        System.out.println("Hello!");
-        HighscoreScreen hScreen = new HighscoreScreen();
-        CreditScreen cScreen = new CreditScreen();
         Title t = new Title();
         MenuScreen mScreen = new MenuScreen();
-        
-//        WordBank wb = new WordBank();
-//        
-//        System.out.println(wb.getWord());
-//        System.out.println(wb.getWordFormat());
-//        System.out.println(wb.getWord());
-//        System.out.println(wb.getWordFormat());
-//        System.out.println(wb.getWord());
-//        System.out.println(wb.getWordFormat());
-//        System.out.println(wb.getWord());
-//      System.out.println(wb.getWordFormat());
-//        System.out.println(wb.getWord());
-//         System.out.println(wb.getWordFormat());
-   
         
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         
