@@ -5,59 +5,88 @@
  */
 package hangman;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Y-Uyen
  */
 public class CheckWord {
 //    private final int MAX_GUESSES = 6;
-//    private int num_guesses;
+    public int numWrongGuesses;
+    public int numGuesses;
     public WordBank wb = new WordBank();
     public String wordToGuess;
     public char guessedLetter;
-    
-    public char[] charsToGuess;
+    public List guessedLettersList;
+    public char[] charsToGuessFormat;
+    public String currentGuessedFormat="";
+    public String correctlyGuessedFormat="";
 
     
     public CheckWord(String word, String format) {      
         wordToGuess = word;
+        numGuesses = 0;
+        numWrongGuesses = 0;
+        guessedLettersList = new ArrayList<Character>();
         String wordToGuessFormat = format;
-        charsToGuess = wordToGuessFormat.toCharArray();
-        for(int i = 0; i < charsToGuess.length; i++) {
-            if(charsToGuess[i] == '_') {
-                charsToGuess[i] = ' ';
+        charsToGuessFormat = wordToGuessFormat.toCharArray();
+        for(int i = 0; i < charsToGuessFormat.length; i++) {
+            if(charsToGuessFormat[i] == '_') {
+                charsToGuessFormat[i] = ' ';
             }
         }
 
     }
     
-    public String checkLetter(char guessedLetter) {
+    public boolean checkLetter(char guessedLetter) {
         char letter = guessedLetter;
-        String correctlyGuessedFormat="";
-        boolean correct = false;
+        boolean result = false;
         
         System.out.println("guessed letter: " + guessedLetter);
         System.out.println("word to guess: " + wordToGuess);
-        
-        
-        
+
         for(int i = 0; i < wordToGuess.length(); i++) {
-            System.out.println("word to guess char: " + wordToGuess.charAt(i));
             if(wordToGuess.charAt(i) == guessedLetter) {
                 int index = i*2;
-                charsToGuess[index] = guessedLetter;
-                correct = true;
+                guessedLettersList.add(guessedLetter);
+                charsToGuessFormat[index] = guessedLetter;
+                result = true;
             }
         }
-        if(correct) {
-            correctlyGuessedFormat = String.valueOf(charsToGuess);
-            System.out.println("correct");
+        if(result) {
+            numGuesses++;
+            correctlyGuessedFormat = String.valueOf(charsToGuessFormat);
+            currentGuessedFormat = correctlyGuessedFormat;
         } else {
-            System.out.println("false");
-            correctlyGuessedFormat="";
+            numGuesses++;
+            numWrongGuesses++;
+            correctlyGuessedFormat = currentGuessedFormat;
         }
+        System.out.println("correct? " + result);
         
-        return correctlyGuessedFormat;
+        return result;
     }
+    
+    public boolean checkGuesses() {
+        boolean result = false;
+        char[] charsToGuess = wordToGuess.toCharArray();
+        int size = guessedLettersList.size();
+        char[] guessedLetters = new char[size];
+        for(int i = 0; i < guessedLetters.length; i++) {
+            guessedLetters[i] = (char) guessedLettersList.get(i);
+        }
+        Arrays.sort(guessedLetters);
+        Arrays.sort(charsToGuess);
+        
+        System.out.println("guessed: " + Arrays.toString(guessedLetters));
+        System.out.println("correct: " + Arrays.toString(charsToGuess));
+        
+        result = Arrays.equals(charsToGuess, guessedLetters);
+        return result;
+    }
+    
     
 }

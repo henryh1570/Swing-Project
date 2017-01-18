@@ -29,7 +29,8 @@ public class PlayScreen extends javax.swing.JFrame {
     public String guessedString;
     private int numWrong = 0;
     private final int maxWrong = 6;
-    private String score;
+    private String score = "100";
+    public boolean guess;
    
     
     /**
@@ -56,9 +57,6 @@ public class PlayScreen extends javax.swing.JFrame {
         
         
     }
-    /**
-     * This method updates the seconds, that way you can see the seconds change in the clock
-     */
 
     /**
      * This Method loops indefinitely to update clock every 1000 milliseconds.
@@ -85,20 +83,29 @@ public class PlayScreen extends javax.swing.JFrame {
         
     }
      
+    /**
+     * This method displays the "_" for each letter.
+     */
+     
     public void displayWordFormat() {
         wordToGuess = wb.getWord();
         wordToGuessFormat = wb.getWordFormat();
         cw = new CheckWord(wordToGuess, wordToGuessFormat);
-        System.out.println("word: " + wordToGuess);
-        System.out.println("hint: " + wordToGuessFormat);
         jLabel5.setText(wordToGuessFormat);
     }
     
+     /**
+     * This method displays correctly guessed letter for each "_".
+     * It also verifies whether or not the guess is correct and updates the score
+     * as well as changes the text from "Incorrect!" to "Correct!"
+     */
     public void displayGuessedString() {
-        System.out.println("guessed string: " + guessedString);
+        SkipScreen sScreen = new SkipScreen();
+        numWrong = cw.numWrongGuesses;
+        int numGuesses = cw.numGuesses;
         jLabel6.setText(guessedString);
-        if (guessedString == "") {
-            numWrong++;
+        if (numWrong > 0 && !guess) {
+            System.out.println("i am in wrong");
             if(numWrong <= maxWrong) {
                 switch (numWrong) {
                     case 1:
@@ -124,15 +131,27 @@ public class PlayScreen extends javax.swing.JFrame {
                     case 6:
                         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
                         score = "40";
-                        SkipScreen sScreen = new SkipScreen();
                         sScreen.setScore(score);
                         sScreen.setVisible(true);
+                        sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                         dispose();
                         break;
                 }
                 jLabel7.setText(score);
-            }
-        }
+                wrongLabel.setText("Incorrect!");
+            } 
+        } else if (guess) {
+            System.out.println("i am in correct");
+            wrongLabel.setText("Correct!");
+            boolean win = cw.checkGuesses();
+            System.out.println("win? " + win);
+            if(cw.checkGuesses()) {
+                sScreen.setScore(score);
+                sScreen.setVisible(true);
+                sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+                dispose();
+            } 
+        } 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,7 +200,8 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        wrongLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -200,7 +220,7 @@ public class PlayScreen extends javax.swing.JFrame {
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 200, 190));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 200, 190));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
@@ -478,10 +498,15 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel7.setText("100");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 60, 50));
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 255, 0));
-        jLabel8.setText("Score:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 50));
+        wrongLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        wrongLabel.setForeground(new java.awt.Color(255, 0, 0));
+        wrongLabel.setText("   ");
+        getContentPane().add(wrongLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 140, 40));
+
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 255, 0));
+        jLabel9.setText("Score:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -495,7 +520,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
             SkipScreen sScreen = new SkipScreen();
-            sScreen.setScore(score);
+            sScreen.setScore("0");
             sScreen.setSize(600,400);
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             sScreen.setVisible(true);
@@ -503,18 +528,18 @@ public class PlayScreen extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton14ActionPerformed
-
+    /**
+     * The rest of these methods are for the event. Once a user clicks on a letter,
+     * the letter gets sent to the CheckWord class where it gets checked to see if the letter
+     * is contained in the word.
+     * @param evt 
+     */
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if(evt.getActionCommand().equals("A")) {
-//            System.out.println("i clicked A");
-//            ImageIcon icon = new ImageIcon("images/famous_fair.jpg"); 
-//            icon.getImage().flush();
-//            jLabel4.setIcon(icon);
-//            jButton1.setEnabled(false);
             letter = 'a';
             buttonA.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -525,8 +550,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("B")) {
             letter = 'b';
             jButton2.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -537,8 +562,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("C")) {
             letter = 'c';
             jButton3.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -549,8 +574,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("D")) {
             letter = 'd';
             jButton4.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -561,8 +586,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("E")) {
             letter = 'e';
             jButton5.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -573,8 +598,8 @@ public class PlayScreen extends javax.swing.JFrame {
          if(evt.getActionCommand().equals("F")) {
             letter = 'f';
             jButton6.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -585,8 +610,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("G")) {
             letter = 'g';
             jButton7.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -597,8 +622,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("H")) {
             letter = 'h';
             jButton8.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -609,8 +634,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("I")) {
             letter = 'i';
             jButton9.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -621,8 +646,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("J")) {
             letter = 'j';
             jButton10.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -633,8 +658,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("K")) {
             letter = 'k';
             jButton11.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -645,8 +670,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("L")) {
             letter = 'l';
             jButton12.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -657,8 +682,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("M")) {
             letter = 'm';
             jButton13.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -669,8 +694,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("N")) {
             letter = 'n';
             jButton15.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -681,8 +706,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("O")) {
             letter = 'o';
             jButton16.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -693,8 +718,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("P")) {
             letter = 'p';
             jButton17.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -705,8 +730,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Q")) {
             letter = 'q';
             jButton18.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -717,8 +742,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("R")) {
             letter = 'r';
             jButton19.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -729,8 +754,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("S")) {
             letter = 's';
             jButton20.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -741,8 +766,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("T")) {
             letter = 't';
             jButton21.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -753,8 +778,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("U")) {
             letter = 'u';
             jButton22.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -765,8 +790,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("V")) {
             letter = 'v';
             jButton23.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -777,8 +802,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("W")) {
             letter = 'w';
             jButton24.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -789,8 +814,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("X")) {
             letter = 'x';
             jButton26.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -801,8 +826,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Y")) {
             letter = 'y';
             jButton27.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -813,8 +838,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Z")) {
             letter = 'z';
             jButton28.setEnabled(false);
-            String check = cw.checkLetter(letter);
-            guessedString = check;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } else {
             System.out.println("nope");
@@ -869,10 +894,11 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel wrongLabel;
     // End of variables declaration//GEN-END:variables
 }
