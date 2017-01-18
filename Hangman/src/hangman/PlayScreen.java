@@ -538,9 +538,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_buttonAActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -550,9 +548,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -562,9 +558,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -574,9 +568,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -586,9 +578,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -598,9 +588,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -610,8 +598,6 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -622,9 +608,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -634,8 +618,6 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -646,9 +628,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -658,9 +638,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -670,8 +648,6 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -682,8 +658,6 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -694,9 +668,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -706,9 +678,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -718,9 +688,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -730,9 +698,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -742,9 +708,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -754,9 +718,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -766,9 +728,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -778,9 +738,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -790,9 +748,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -802,9 +758,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
@@ -814,9 +768,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -826,9 +778,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -838,9 +788,7 @@ public class PlayScreen extends javax.swing.JFrame {
             guess = cw.checkLetter(letter);
             guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
-        } else {
-            System.out.println("nope");
-        }
+        } 
     }//GEN-LAST:event_jButton28ActionPerformed
 
     /**
