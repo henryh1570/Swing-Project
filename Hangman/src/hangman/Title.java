@@ -1,24 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: Title.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
-/**
- *
- * @author luis_cortes
- */
+//class: Title
+//method: This class just displays the title page
 public class Title extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Title
-     */
+    //constructor: Title
+    //purpose: This class sets the Look and Feel of the program.
     public Title() {
         setDefaultLAF();
         initComponents();
     }
     
+    //method: setDefaultLAF
+    //purpose: sets the Look and Feel of the program
     private void setDefaultLAF() {
         // Default to Nimbus LAF for project
         try {
@@ -100,9 +106,8 @@ public class Title extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the Title class' JFrame form.
     public static void main(String args[]) {
        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

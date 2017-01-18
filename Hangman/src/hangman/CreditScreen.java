@@ -1,24 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: CreditScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 
-/**
- *
- * @author hh
- */
+//class:CreditScreen
+//purpose: This class just displays the name and ID's of everyone in the group.
 public class CreditScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
 
-    /**
-     * Creates new form CreditScreen
-     */
+    //constructor: CreditScreen
+    //purpose: Initializes the JFrame along with center.
     public CreditScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
     }
 
@@ -116,7 +121,7 @@ public class CreditScreen extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,7 +137,7 @@ public class CreditScreen extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,15 +145,18 @@ public class CreditScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(71, 71, 71))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //method: jButton1ActionPerformed
+    //purpose: This creates the event for the "Back" button. Once the button is clicked, it takes the user back one page.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("Back")) {
             MenuScreen mScreen = new MenuScreen();
@@ -159,9 +167,8 @@ public class CreditScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+     //method: Main method
+    //purpose: To run the CreditScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

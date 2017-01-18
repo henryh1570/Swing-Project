@@ -1,8 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: PLayScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
@@ -15,12 +22,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author Y-Uyen
- */
+//class: PlayScreen
+//purpose of class: This class is the class that takes care of all the interactions
+//in the game. It uses the WordBank class in order to get the word and the CheckWord
+//class in order to check if the user guesses correctly.
 public class PlayScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
     public WordBank wb;
     public CheckWord cw;
     public char letter;
@@ -29,38 +36,38 @@ public class PlayScreen extends javax.swing.JFrame {
     public String guessedString;
     private int numWrong = 0;
     private final int maxWrong = 6;
-    private String score = "100";
+    private String score;
     public boolean guess;
    
     
-    /**
-     * Creates new form PlayScreen
-     */
+    // constructor: PlayScreen
+    // purpose: This is the constructor and it initializes the objects and instance variables.
+    // It also calls currentTIme() and currentDate() which are needed to set the date and time in the frame.
+    // It uses "center" to always display the game window in the center of the screen.
     public PlayScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         wb = new WordBank();
+        score="100";
         initComponents();
         currentTime();
         currentDate();
         displayWordFormat();
     }
     
-    /**
-     * This method gets the current date and forces it to be in the form of January, 17, 2017
-    */
-    
+   
+    //method: currentDate
+    //purpose: This method returns the current date in the Month, dd, year format.
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
         Calendar cal = new GregorianCalendar();
         Date today = new Date();
         String date = sdf.format(today);
         jLabel2.setText(date);
-        
-        
     }
 
-    /**
-     * This Method loops indefinitely to update clock every 1000 milliseconds.
-     */
+    //method: currentTime
+    //purpose: This method updates the second in the clock by having the thread resume after being
+    //put to sleep for 1 second so that it can update the seconds.
      public void currentTime() {
         Thread clock = new Thread() {
             public void run() {
@@ -83,10 +90,8 @@ public class PlayScreen extends javax.swing.JFrame {
         
     }
      
-    /**
-     * This method displays the "_" for each letter.
-     */
-     
+    //method: displayWordFormat
+    //purpose: This method gets the hint, or the "_ _ _" for each word and displays it to the screen.
     public void displayWordFormat() {
         wordToGuess = wb.getWord();
         wordToGuessFormat = wb.getWordFormat();
@@ -94,11 +99,11 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel5.setText(wordToGuessFormat);
     }
     
-     /**
-     * This method displays correctly guessed letter for each "_".
-     * It also verifies whether or not the guess is correct and updates the score
-     * as well as changes the text from "Incorrect!" to "Correct!"
-     */
+    
+    //method: displayGuessedString
+    //purpose: This method displays correctly guessed letter for each "_".
+    //It also verifies whether or not the guess is correct and updates the score
+    //as well as changes the text from "Incorrect!" to "Correct!"
     public void displayGuessedString() {
         SkipScreen sScreen = new SkipScreen();
         numWrong = cw.numWrongGuesses;
@@ -217,7 +222,7 @@ public class PlayScreen extends javax.swing.JFrame {
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 200, 190));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 200, 170));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
@@ -225,7 +230,7 @@ public class PlayScreen extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
         buttonA.setText("A");
         buttonA.setPreferredSize(new java.awt.Dimension(45, 29));
@@ -509,11 +514,10 @@ public class PlayScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * This method is for the skip button. When the player clicks "Skip", it will
-     * take them to the Skip Screen where it will display their score as 0 because they
-     * opted out of the game.
-     */
+    //method: jButton14ActionPerformed
+    //purpose: This method is for the skip button. When the player clicks "Skip", it will
+    //take them to the Skip Screen where it will display their score as 0 because they
+    //opted out of the game.
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
             SkipScreen sScreen = new SkipScreen();
@@ -525,12 +529,12 @@ public class PlayScreen extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton14ActionPerformed
-    /**
+    /***********************************************
      * The rest of these methods are for the event. Once a user clicks on a letter,
      * the letter gets sent to the CheckWord class where it gets checked to see if the letter
      * is contained in the word.
      * @param evt 
-     */
+     ************************************************/
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if(evt.getActionCommand().equals("A")) {
             letter = 'a';
@@ -791,9 +795,9 @@ public class PlayScreen extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton28ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+        
+    //method: Main method
+    //purpose: To run the PLayScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

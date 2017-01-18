@@ -1,24 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: HighscoreScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 
-/**
- *
- * @author hh
- */
+//class: HighscoreScreen
+//purpose: Currently, this page only displays the default values.
 public class HighscoreScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
     
-    /**
-     * Creates new form CreditScreen
-     */
+    //constructor: HighscoreScreen
+    //purpose: Initializes the JFrame along with center.
     public HighscoreScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
     }
 
@@ -149,6 +154,9 @@ public class HighscoreScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //method: jButton1ActionPerformed
+    //purpose: This creates the event for the "Back" button. Once the button is clicked, it takes the user back one page.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("Back")) {
             MenuScreen mScreen = new MenuScreen();
@@ -159,9 +167,8 @@ public class HighscoreScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the HighscoreScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

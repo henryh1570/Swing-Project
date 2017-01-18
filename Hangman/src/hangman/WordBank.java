@@ -1,8 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: WordBank.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,10 +19,9 @@ import java.util.Random;
 import java.util.Set;
 
 
-/**
- *
- * @author Y-Uyen
- */
+
+//class: WordBank
+//purpose of class: This class returns a word to the PlayScreen and it also creates the format of the hint.
 public class WordBank {
     private Random random;
     private int size;
@@ -25,12 +31,9 @@ public class WordBank {
     private Set set = new HashSet();
     private ArrayList<Integer> list;
     
-    /**
-     * This method fills the word bank with the words for the user to guess,
-     * resets the iterator to 0, and starts up the list
-     * 
-     */
-    
+    //constructor: WordBank
+    //purpose: This class initiliazes the ArrayList with the words the user should be guessing from.
+    //It also initalizes the randomizer to try keep the game a litte more interesting.
     public WordBank() {
         wordBank = new ArrayList<>();
         wordBank.add("abstract");
@@ -44,11 +47,8 @@ public class WordBank {
         randomNumList();
     }
     
-    /**
-     * This method returns a random word from the word bank.
-     * @return 
-     */
-    
+    //method: getWord
+    //purpose: This method returns a random word from the word bank.
     public String getWord() {
         String word = "";
         if(iterator > size) {
@@ -61,6 +61,8 @@ public class WordBank {
         return word;
     }
 
+    //method: getWordFormat
+    //purpose: This method returns the hint from the word that gets chosen from the word bank.
     public String getWordFormat() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
@@ -76,7 +78,8 @@ public class WordBank {
         return builder.toString();
     }
        
-    
+    //method: randomNumList
+    //purpose: This creates a unique random list with number rangn from 0 to the size of the word bank.
     public void randomNumList() {
        list = new ArrayList<Integer>();
         for (int i=0; i<size; i++) {
@@ -85,6 +88,8 @@ public class WordBank {
         Collections.shuffle(list);
     }
     
+    //method: randomNum
+    //pupose: This method gets a random number from the randomNumList.
     public int randomNum() {
         return list.get(iterator);
     }

@@ -1,24 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: SkipScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 
-/**
- *
- * @author Y-Uyen
- */
+//class: SkipScreen
+//purpose of class: This class just displays the score to the user along with an "End" button that takes them back to the menu.
 public class SkipScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
 
-    /**
-     * Creates new form SkipScreen
-     */
+    //constructor:SkipScreen
+    //purpose: This initalizes the form as well as creating the events. It also initiliazes center which is used in order to
+    //display the game in the center of the screen.
     public SkipScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
     }
 
@@ -84,6 +90,8 @@ public class SkipScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //method: jButton1ActionPerformed
+    //puprose: This "end" button takes you back to the menu screen.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("End")) {
             MenuScreen mScreen = new MenuScreen();
@@ -94,17 +102,20 @@ public class SkipScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //method: setScore
+    //purpose: This method is the access modifier to score. PlayScreen uses this method to set the score for the user.
     public void setScore(String score) {
         this.jLabel2.setText(score);
     }
     
+    //method: getScore
+    //purpose: This method is the access modifier to score. PlayScreen uses this method to get the score for the user.
     public String getScore() {
         return this.jLabel2.getText();
     }
     
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the SkipScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

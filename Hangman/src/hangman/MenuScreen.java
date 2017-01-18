@@ -1,8 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: MenuScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
@@ -13,12 +20,12 @@ import java.awt.Point;
  * @author hh
  */
 public class MenuScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
 
-    /**
-     * Creates new form MenuScreen
-     */
+    //constructor: MenuScreen
+    //purpose: Initializes the JFrame along with center.
     public MenuScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
     }
     
@@ -124,6 +131,8 @@ public class MenuScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //method: jButton1ActionPerformed
+    //purpose: This creates the event for the "PLAY" button. Once the button is clicked, it takes the user to the PlayScreen.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("PLAY")) {
             PlayScreen pScreen = new PlayScreen();
@@ -134,6 +143,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //method: jButton2ActionPerformed
+    //purpose: This creates the event for the "HIGHSCORES" button. Once the button is clicked, it takes the user to the HighscoreScreen.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(evt.getActionCommand().equals("HIGHSCORES")) {
             HighscoreScreen hScreen = new HighscoreScreen();
@@ -144,6 +155,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //method: jButton3ActionPerformed
+    //purpose: This creates the event for the "CREDITS" button. Once the button is clicked, it takes the user to the CreditScreen.
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(evt.getActionCommand().equals("CREDITS")) {
             CreditScreen cScreen = new CreditScreen();
@@ -154,9 +167,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the CreditScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
