@@ -138,6 +138,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -373,7 +374,9 @@ public class PlayScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 70, 50));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 200, 190));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
@@ -381,6 +384,9 @@ public class PlayScreen extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -765,6 +771,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
