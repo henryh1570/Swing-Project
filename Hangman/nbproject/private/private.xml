@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/MenuScreen.java</file>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/PlayScreen.java</file>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/CreditScreen.java</file>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/HighscoreScreen.java</file>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/Title.java</file>
-            <file>file:/home/hh/NetBeansProjects/Hangman/src/hangman/Hangman.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/Hangman.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/PlayScreen.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/CheckWord.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/Title.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/HighscoreScreen.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/CreditScreen.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/WordBank.java</file>
+            <file>file:/C:/Users/Y-Uyen/Desktop/cs245/Swing-Project/Hangman/src/hangman/MenuScreen.java</file>
         </group>
     </open-files>
 </project-private>
