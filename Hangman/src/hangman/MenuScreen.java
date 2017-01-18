@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: MenuScreen.java
+* author: Team HOALY
+* class: CS 245 – Graphical User Interfaces
+*
+* assignment: project 1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is the Hangman version 1.0 application.
+****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 
 /**
- *
  * @author hh
  */
 public class MenuScreen extends javax.swing.JFrame {
@@ -22,7 +26,6 @@ public class MenuScreen extends javax.swing.JFrame {
         initComponents();
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

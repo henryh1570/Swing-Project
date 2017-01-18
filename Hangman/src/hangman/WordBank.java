@@ -1,9 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: WordBank.java
+* author: Team HOALY
+* class: CS 245 – Graphical User Interfaces
+*
+* assignment: project 1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is the Hangman version 1.0 application.
+****************************************************************/ 
 package hangman;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,11 +24,10 @@ import java.util.Set;
  */
 public class WordBank {
     private Random random;
-    private int size;
+    private final int SIZE;
     public int iterator;
     private final List<String> wordBank;
     private String word;
-    private Set set = new HashSet();
     private ArrayList<Integer> list;
     
     /**
@@ -30,7 +35,6 @@ public class WordBank {
      * resets the iterator to 0, and starts up the list
      * 
      */
-    
     public WordBank() {
         wordBank = new ArrayList<>();
         wordBank.add("abstract");
@@ -39,7 +43,7 @@ public class WordBank {
         wordBank.add("pharmacy");
         wordBank.add("climbing");
         
-        size = wordBank.size(); 
+        SIZE = wordBank.size(); 
         iterator = 0;
         randomNumList();
     }
@@ -48,10 +52,9 @@ public class WordBank {
      * This method returns a random word from the word bank.
      * @return 
      */
-    
     public String getWord() {
         String word = "";
-        if(iterator > size) {
+        if(iterator > SIZE) {
             iterator = 0;
         } else {
             this.word = wordBank.get(randomNum());
@@ -76,10 +79,9 @@ public class WordBank {
         return builder.toString();
     }
        
-    
     public void randomNumList() {
        list = new ArrayList<Integer>();
-        for (int i=0; i<size; i++) {
+        for (int i=0; i<SIZE; i++) {
             list.add(new Integer(i));
         }
         Collections.shuffle(list);
@@ -88,5 +90,4 @@ public class WordBank {
     public int randomNum() {
         return list.get(iterator);
     }
-    
 }

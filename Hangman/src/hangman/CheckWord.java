@@ -1,8 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: CheckWord.java
+* author: Team HOALY
+* class: CS 245 – Graphical User Interfaces
+*
+* assignment: project 1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is the Hangman version 1.0 application.
+****************************************************************/ 
 package hangman;
 
 import java.util.ArrayList;
@@ -23,7 +28,6 @@ public class CheckWord {
     public char[] charsToGuessFormat;
     public String currentGuessedFormat="";
     public String correctlyGuessedFormat="";
-
     
     public CheckWord(String word, String format) {      
         wordToGuess = word;
@@ -37,11 +41,9 @@ public class CheckWord {
                 charsToGuessFormat[i] = ' ';
             }
         }
-
     }
     
     public boolean checkLetter(char guessedLetter) {
-        char letter = guessedLetter;
         boolean result = false;
 
         for(int i = 0; i < wordToGuess.length(); i++) {
@@ -52,6 +54,7 @@ public class CheckWord {
                 result = true;
             }
         }
+        
         if(result) {
             numGuesses++;
             correctlyGuessedFormat = String.valueOf(charsToGuessFormat);
@@ -61,24 +64,20 @@ public class CheckWord {
             numWrongGuesses++;
             correctlyGuessedFormat = currentGuessedFormat;
         }
-        
         return result;
     }
     
     public boolean checkGuesses() {
-        boolean result = false;
         char[] charsToGuess = wordToGuess.toCharArray();
         int size = guessedLettersList.size();
         char[] guessedLetters = new char[size];
+        
         for(int i = 0; i < guessedLetters.length; i++) {
             guessedLetters[i] = (char) guessedLettersList.get(i);
         }
+        
         Arrays.sort(guessedLetters);
         Arrays.sort(charsToGuess);
-        
-        result = Arrays.equals(charsToGuess, guessedLetters);
-        return result;
+        return Arrays.equals(charsToGuess, guessedLetters);
     }
-    
-    
 }
