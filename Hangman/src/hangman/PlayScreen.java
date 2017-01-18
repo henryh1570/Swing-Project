@@ -27,6 +27,9 @@ public class PlayScreen extends javax.swing.JFrame {
     public String wordToGuess;
     public String wordToGuessFormat;
     public String guessedString;
+    private int numWrong = 0;
+    private final int maxWrong = 6;
+    private String score;
    
     
     /**
@@ -94,6 +97,42 @@ public class PlayScreen extends javax.swing.JFrame {
     public void displayGuessedString() {
         System.out.println("guessed string: " + guessedString);
         jLabel6.setText(guessedString);
+        if (guessedString == "") {
+            numWrong++;
+            if(numWrong <= maxWrong) {
+                switch (numWrong) {
+                    case 1:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo1.png"))); // NOI18N
+                        score = "90";
+                        break;
+                    case 2:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo2.png"))); // NOI18N
+                        score = "80";
+                        break;
+                    case 3:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo2.5.png"))); // NOI18N
+                        score = "70";
+                        break;
+                    case 4:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo3.png"))); // NOI18N
+                        score = "60";
+                        break;
+                    case 5:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo4.png"))); // NOI18N
+                        score = "50";
+                        break;
+                    case 6:
+                        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
+                        score = "40";
+                        SkipScreen sScreen = new SkipScreen();
+                        sScreen.setScore(score);
+                        sScreen.setVisible(true);
+                        dispose();
+                        break;
+                }
+                jLabel7.setText(score);
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,7 +143,14 @@ public class PlayScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        buttonA = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -130,242 +176,20 @@ public class PlayScreen extends javax.swing.JFrame {
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton14 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setText("A");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 50, -1));
-
-        jButton2.setText("B");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 50, -1));
-
-        jButton3.setText("C");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 50, -1));
-
-        jButton4.setText("D");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 50, -1));
-
-        jButton5.setText("E");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 50, -1));
-
-        jButton6.setText("F");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 40, -1));
-
-        jButton7.setText("G");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
-
-        jButton8.setText("H");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 50, -1));
-
-        jButton9.setText("I");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 40, -1));
-
-        jButton10.setText("J");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 50, -1));
-
-        jButton11.setText("K");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 50, -1));
-
-        jButton12.setText("L");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 50, -1));
-
-        jButton13.setText("M");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
-
-        jButton15.setText("N");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
-
-        jButton16.setText("O");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
-
-        jButton17.setText("P");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
-
-        jButton18.setText("Q");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
-
-        jButton19.setText("R");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
-
-        jButton20.setText("S");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
-
-        jButton21.setText("T");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
-
-        jButton22.setText("U");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
-
-        jButton23.setText("V");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, -1, -1));
-
-        jButton24.setText("W");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
-
-        jButton26.setText("X");
-        jButton26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton26ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
-
-        jButton27.setText("Y");
-        jButton27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton27ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
-
-        jButton28.setText("Z");
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Hangman");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 20, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        jLabel2.setText("Date");
-        jPanel1.add(jLabel2);
-
-        jLabel3.setText("Time");
-        jPanel1.add(jLabel3);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 160, 20));
 
         jButton14.setText("Skip");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -380,15 +204,287 @@ public class PlayScreen extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
+        buttonA.setText("A");
+        buttonA.setPreferredSize(new java.awt.Dimension(45, 29));
+        buttonA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAActionPerformed(evt);
+            }
+        });
+        jPanel3.add(buttonA);
+
+        jButton2.setText("B");
+        jButton2.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2);
+
+        jButton3.setText("C");
+        jButton3.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3);
+
+        jButton4.setText("D");
+        jButton4.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4);
+
+        jButton5.setText("E");
+        jButton5.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5);
+
+        jButton6.setText("F");
+        jButton6.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6);
+
+        jButton7.setText("G");
+        jButton7.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton7);
+
+        jButton8.setText("H");
+        jButton8.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton8);
+
+        jButton9.setText("I");
+        jButton9.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton9);
+
+        jButton10.setText("J");
+        jButton10.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton10);
+
+        jButton11.setText("K");
+        jButton11.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton11);
+
+        jButton12.setText("L");
+        jButton12.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton12);
+
+        jButton13.setText("M");
+        jButton13.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton13);
+
+        jButton15.setText("N");
+        jButton15.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton15);
+
+        jButton16.setText("O");
+        jButton16.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton16);
+
+        jButton17.setText("P");
+        jButton17.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton17);
+
+        jButton18.setText("Q");
+        jButton18.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton18);
+
+        jButton19.setText("R");
+        jButton19.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton19);
+
+        jButton20.setText("S");
+        jButton20.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton20);
+
+        jButton21.setText("T");
+        jButton21.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton21);
+
+        jButton22.setText("U");
+        jButton22.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton22);
+
+        jButton23.setText("V");
+        jButton23.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton23);
+
+        jButton24.setText("W");
+        jButton24.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton24);
+
+        jButton26.setText("X");
+        jButton26.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton26);
+
+        jButton27.setText("Y");
+        jButton27.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton27);
+
+        jButton28.setText("Z");
+        jButton28.setPreferredSize(new java.awt.Dimension(45, 29));
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton28);
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 540, 110));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabel2.setText("Date");
+        jPanel1.add(jLabel2);
+
+        jLabel3.setText("Time");
+        jPanel1.add(jLabel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 210, 40));
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel7.setText("100");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 60, 50));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 255, 0));
+        jLabel8.setText("Score:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 50));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -399,6 +495,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
             SkipScreen sScreen = new SkipScreen();
+            sScreen.setScore(score);
             sScreen.setSize(600,400);
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             sScreen.setVisible(true);
@@ -407,7 +504,7 @@ public class PlayScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if(evt.getActionCommand().equals("A")) {
 //            System.out.println("i clicked A");
 //            ImageIcon icon = new ImageIcon("images/famous_fair.jpg"); 
@@ -415,14 +512,14 @@ public class PlayScreen extends javax.swing.JFrame {
 //            jLabel4.setIcon(icon);
 //            jButton1.setEnabled(false);
             letter = 'a';
-            jButton1.setEnabled(false);
+            buttonA.setEnabled(false);
             String check = cw.checkLetter(letter);
             guessedString = check;
             displayGuessedString();
         } else {
             System.out.println("nope");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonAActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(evt.getActionCommand().equals("B")) {
@@ -583,7 +680,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         if(evt.getActionCommand().equals("O")) {
             letter = 'o';
-            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
             String check = cw.checkLetter(letter);
             guessedString = check;
             displayGuessedString();
@@ -643,7 +740,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         if(evt.getActionCommand().equals("T")) {
             letter = 't';
-            jButton20.setEnabled(false);
+            jButton21.setEnabled(false);
             String check = cw.checkLetter(letter);
             guessedString = check;
             displayGuessedString();
@@ -691,7 +788,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         if(evt.getActionCommand().equals("X")) {
             letter = 'x';
-            jButton24.setEnabled(false);
+            jButton26.setEnabled(false);
             String check = cw.checkLetter(letter);
             guessedString = check;
             displayGuessedString();
@@ -738,7 +835,7 @@ public class PlayScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonA;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -772,6 +869,10 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

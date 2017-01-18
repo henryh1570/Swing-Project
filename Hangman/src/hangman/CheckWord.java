@@ -10,8 +10,8 @@ package hangman;
  * @author Y-Uyen
  */
 public class CheckWord {
-    private final int MAX_GUESSES = 6;
-    private int num_guesses;
+//    private final int MAX_GUESSES = 6;
+//    private int num_guesses;
     public WordBank wb = new WordBank();
     public String wordToGuess;
     public char guessedLetter;
