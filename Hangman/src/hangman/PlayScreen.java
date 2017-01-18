@@ -22,14 +22,19 @@ import javax.swing.JOptionPane;
 public class PlayScreen extends javax.swing.JFrame {
     public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     public WordBank wb;
-    private final int MAX_GUESSES = 6;
-    private int num_guesses;
+    public CheckWord cw;
+    public char letter;
+    public String wordToGuess;
+    public String wordToGuessFormat;
+    public String guessedString;
+   
     
     /**
      * Creates new form PlayScreen
      */
     public PlayScreen() {
         wb = new WordBank();
+        cw = new CheckWord();
         initComponents();
         currentTime();
         currentDate();
@@ -79,12 +84,17 @@ public class PlayScreen extends javax.swing.JFrame {
     }
      
     public void displayWordFormat() {
-        String word = wb.getWord();
-        String hint = wb.getWordFormat();
+        wordToGuess = wb.getWord();
+        wordToGuessFormat = wb.getWordFormat();
         
-        System.out.println("word: " + word);
-        System.out.println("hint: " + hint);
-        jLabel5.setText(hint);
+        System.out.println("word: " + wordToGuess);
+        System.out.println("hint: " + wordToGuessFormat);
+        jLabel5.setText(wordToGuessFormat);
+    }
+    
+    public void displayGuessedString() {
+        System.out.println("guessed string: " + guessedString);
+        jLabel6.setText(guessedString);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,6 +138,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,18 +152,43 @@ public class PlayScreen extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 50, -1));
 
         jButton2.setText("B");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 50, -1));
 
         jButton3.setText("C");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 50, -1));
 
         jButton4.setText("D");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 50, -1));
 
         jButton5.setText("E");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 50, -1));
 
         jButton6.setText("F");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 40, -1));
 
         jButton7.setText("G");
@@ -238,13 +274,15 @@ public class PlayScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
-
-        jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 70, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel6.setText("guesses");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -267,15 +305,80 @@ public class PlayScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("A")) {
-            System.out.println("i clicked A");
-            ImageIcon icon = new ImageIcon("images/famous_fair.jpg"); 
-            icon.getImage().flush();
-            jLabel4.setIcon(icon);
+//            System.out.println("i clicked A");
+//            ImageIcon icon = new ImageIcon("images/famous_fair.jpg"); 
+//            icon.getImage().flush();
+//            jLabel4.setIcon(icon);
+//            jButton1.setEnabled(false);
+            letter = 'a';
             jButton1.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
         } else {
             System.out.println("nope");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(evt.getActionCommand().equals("B")) {
+            letter = 'b';
+            jButton2.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(evt.getActionCommand().equals("C")) {
+            letter = 'c';
+            jButton3.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(evt.getActionCommand().equals("D")) {
+            letter = 'd';
+            jButton4.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(evt.getActionCommand().equals("E")) {
+            letter = 'e';
+            jButton5.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         if(evt.getActionCommand().equals("F")) {
+            letter = 'f';
+            jButton6.setEnabled(false);
+            String check = cw.checkLetter(letter);
+            guessedString = check;
+            displayGuessedString();
+        } else {
+            System.out.println("nope");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +426,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
