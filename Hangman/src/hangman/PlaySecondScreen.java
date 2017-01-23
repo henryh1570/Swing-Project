@@ -5,17 +5,93 @@
  */
 package hangman;
 
+import java.awt.Color;
+import static java.lang.Thread.sleep;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hh
  */
 public class PlaySecondScreen extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form PlaySecondScreen
      */
     public PlaySecondScreen() {
         initComponents();
+        randomizeHintName();
+        randomizeHintColor();
+        currentTime();
+        currentDate();
+    }
+
+    private void randomizeHintColor() {
+        int num = ThreadLocalRandom.current().nextInt() % 5;
+        switch (num) {
+            case 0: hint.setForeground(Color.YELLOW);
+            break;
+            case 1: hint.setForeground(Color.RED);
+            break;
+            case 2: hint.setForeground(new Color(150, 0, 255));
+            break;
+            case 3: hint.setForeground(Color.CYAN);
+            break;
+            default: hint.setForeground(Color.GREEN);
+            break;
+        }
+    }
+    
+    private void randomizeHintName() {
+        int num = ThreadLocalRandom.current().nextInt() % 5;
+        switch (num) {
+            case 0: hint.setText("GREEN");
+            break;
+            case 1: hint.setText("RED");
+            break;
+            case 2: hint.setText("BLUE");
+            break;
+            case 3: hint.setText("PURPLE");
+            break;
+            default: hint.setText("YELLOW");
+            break;
+        }
+    }
+    
+    public void currentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
+        Calendar cal = new GregorianCalendar();
+        Date today = new Date();
+        String strDate = sdf.format(today);
+        date.setText(strDate);
+    }    
+    
+    public void currentTime() {
+        Thread clock = new Thread() {
+            public void run() {
+                for(;;) {
+                    Calendar cal = new GregorianCalendar();
+                    int second = cal.get(Calendar.SECOND);
+                    int minute = cal.get(Calendar.MINUTE);
+                    int hour = cal.get(Calendar.HOUR);
+                    time.setText(hour + ":" + minute + ":" + second);
+                    
+                    try{
+                        sleep(1000);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                }
+            }
+        };
+        clock.start();
+        
     }
 
     /**
@@ -28,7 +104,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Hint = new javax.swing.JLabel();
+        hint = new javax.swing.JLabel();
         gem1 = new javax.swing.JButton();
         gem2 = new javax.swing.JButton();
         gem3 = new javax.swing.JButton();
@@ -36,8 +112,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         gem5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -45,7 +121,9 @@ public class PlaySecondScreen extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        Hint.setText("Color Text");
+        hint.setFont(new java.awt.Font("Courier 10 Pitch", 1, 48)); // NOI18N
+        hint.setText("Color Text");
+        hint.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         gem1.setBackground(new java.awt.Color(255, 255, 255));
         gem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/blue_gem.jpg"))); // NOI18N
@@ -80,11 +158,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel2.setText("Date");
-        jPanel2.add(jLabel2);
+        date.setText("Date");
+        jPanel2.add(date);
 
-        jLabel3.setText("Time");
-        jPanel2.add(jLabel3);
+        time.setText("Time");
+        jPanel2.add(time);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -118,11 +196,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                         .addComponent(gem1)
                         .addGap(120, 120, 120)
                         .addComponent(gem3)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(Hint)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
@@ -134,15 +208,19 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(hint)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Hint)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hint)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gem3)
                     .addComponent(gem5)
@@ -158,7 +236,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +250,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -204,16 +283,16 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Hint;
+    private javax.swing.JLabel date;
     private javax.swing.JButton gem1;
     private javax.swing.JButton gem2;
     private javax.swing.JButton gem3;
     private javax.swing.JButton gem4;
     private javax.swing.JButton gem5;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel hint;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }
