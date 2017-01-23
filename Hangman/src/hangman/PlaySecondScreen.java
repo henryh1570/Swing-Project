@@ -344,7 +344,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         
         
         if (rounds == 0) {
-            SkipScreen sScreen = new SkipScreen();
+            SkipScreen sScreen = new SkipScreen(totalScore);
             sScreen.setScore(Integer.toString(totalScore));
             sScreen.setVisible(true);
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);            
@@ -356,7 +356,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     }
     
     private void gem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem1ActionPerformed
-        generalButtonAction(Color.BLUE);
+        generalButtonAction(Color.CYAN);
     }//GEN-LAST:event_gem1ActionPerformed
 
     private void gem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem2ActionPerformed
@@ -406,7 +406,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlaySecondScreen(0).setVisible(true);
+                new PlaySecondScreen(50).setVisible(true);
             }
         });
     }
