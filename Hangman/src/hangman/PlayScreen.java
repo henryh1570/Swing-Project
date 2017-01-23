@@ -105,7 +105,7 @@ public class PlayScreen extends javax.swing.JFrame {
     //It also verifies whether or not the guess is correct and updates the score
     //as well as changes the text from "Incorrect!" to "Correct!"
     public void displayGuessedString() {
-        SkipScreen sScreen = new SkipScreen();
+        PlaySecondScreen pSS;
         numWrong = cw.numWrongGuesses;
         int numGuesses = cw.numGuesses;
         jLabel6.setText(guessedString);
@@ -135,9 +135,9 @@ public class PlayScreen extends javax.swing.JFrame {
                     case 6:
                         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
                         score = "40";
-                        sScreen.setScore(score);
-                        sScreen.setVisible(true);
-                        sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+                        pSS = new PlaySecondScreen(40);
+                        pSS.setVisible(true);
+                        pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                         dispose();
                         break;
                 }
@@ -148,9 +148,9 @@ public class PlayScreen extends javax.swing.JFrame {
             wrongLabel.setText("Correct!");
             boolean win = cw.checkGuesses();
             if(cw.checkGuesses()) {
-                sScreen.setScore(score);
-                sScreen.setVisible(true);
-                sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+                pSS = new PlaySecondScreen(Integer.parseInt(score));
+                pSS.setVisible(true);
+                pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                 dispose();
             } 
         } 
@@ -508,7 +508,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 255, 0));
         jLabel9.setText("Score:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 50));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 70, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -520,13 +520,11 @@ public class PlayScreen extends javax.swing.JFrame {
     //opted out of the game.
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
-            SkipScreen sScreen = new SkipScreen();
-            sScreen.setScore("0");
-            sScreen.setSize(600,400);
-            sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
-            sScreen.setVisible(true);
+            PlaySecondScreen pSS = new PlaySecondScreen(0);
+            pSS.setSize(600,400);
+            pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            pSS.setVisible(true);
             dispose();
-            
         }
     }//GEN-LAST:event_jButton14ActionPerformed
     /***********************************************
