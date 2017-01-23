@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,10 +37,47 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         previousResult.setText("Round 1 | Previous Result: ");
         randomizeHintName();
         randomizeHintColor();
+        setGemColor();
+        randomizeGems();
         currentTime();
         currentDate();
     }
+    
+    public void setGemColor() {
+        gem1.setForeground(Color.BLUE);
+        gem2.setForeground(Color.GREEN);
+        gem3.setForeground(PURPLE);
+        gem4.setForeground(Color.RED);
+        gem5.setForeground(Color.YELLOW);
+    }
 
+    public void randomizeGems() {
+        int coordinates[][] = new int[5][2];
+        coordinates[0][0] = gem1.getX();
+        coordinates[0][1] = gem1.getY();
+        coordinates[1][0] = gem2.getX();
+        coordinates[1][1] = gem2.getY();
+        coordinates[2][0] = gem3.getX();
+        coordinates[2][1] = gem3.getY();
+        coordinates[3][0] = gem4.getX();
+        coordinates[3][1] = gem4.getY();
+        coordinates[4][0] = gem5.getX();
+        coordinates[4][1] = gem5.getY();
+        
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 2; j++) {
+                System.out.println(coordinates[i][j]);
+            }
+        }
+        
+        System.out.println("x: " + gem1.getX() + ", y: " + gem1.getY());
+        System.out.println("x: " + gem2.getX() + ", y: " + gem2.getY());
+        System.out.println("x: " + gem3.getX() + ", y: " + gem3.getY());
+        System.out.println("x: " + gem4.getX() + ", y: " + gem4.getY());
+        System.out.println("x: " + gem5.getX() + ", y: " + gem5.getY());
+    }
+    
+    
     private void randomizeHintColor() {
         int num = ThreadLocalRandom.current().nextInt() % 5;
         switch (num) {
@@ -357,6 +395,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     
     private void gem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem1ActionPerformed
         generalButtonAction(Color.CYAN);
+        System.out.println(gem1.getText());
+
     }//GEN-LAST:event_gem1ActionPerformed
 
     private void gem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem2ActionPerformed
