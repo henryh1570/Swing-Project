@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -23,22 +25,24 @@ import javax.swing.JOptionPane;
  */
 public class PlaySecondScreen extends javax.swing.JFrame {
     public Point center;
-    private int rounds = 5;
+    private int rounds = 100;
     private int totalScore;
     private final Color PURPLE = new Color(150, 0, 255);
-    
+    private int[][] coordinates;
+    private int gemCount = 5;
+    private JButton[] gems;
     /**
      * Creates new form PlaySecondScreen
      */
     public PlaySecondScreen(int firstScore) {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         totalScore = firstScore;
+       
         initComponents();
         previousResult.setText("Round 1 | Previous Result: ");
         randomizeHintName();
         randomizeHintColor();
         setGemColor();
-        randomizeGems();
         currentTime();
         currentDate();
     }
@@ -50,31 +54,58 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         gem4.setForeground(Color.RED);
         gem5.setForeground(Color.YELLOW);
     }
-
+    
+    public int randomX() {
+        int max = 500;
+        int min = 0;
+        Random rand = new Random();
+        int x = rand.nextInt((max - min) + 1) + min;
+        System.out.print("x: " + x);
+        return x;
+    }
+    
+    public int randomY() {
+        int max = 300;
+        int min = 100;
+        Random rand = new Random();
+        int y = rand.nextInt((max - min) + 1) + min;
+        System.out.print("y: " + y);
+        return y;
+    }
+    
     public void randomizeGems() {
-        int coordinates[][] = new int[5][2];
-        coordinates[0][0] = gem1.getX();
-        coordinates[0][1] = gem1.getY();
-        coordinates[1][0] = gem2.getX();
-        coordinates[1][1] = gem2.getY();
-        coordinates[2][0] = gem3.getX();
-        coordinates[2][1] = gem3.getY();
-        coordinates[3][0] = gem4.getX();
-        coordinates[3][1] = gem4.getY();
-        coordinates[4][0] = gem5.getX();
-        coordinates[4][1] = gem5.getY();
+        int g1x = randomX();
+        int g1y = randomY();
+        System.out.println();
         
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 2; j++) {
-                System.out.println(coordinates[i][j]);
-            }
-        }
+        int g2x = randomX();
+        int g2y = randomY();
+        System.out.println();
         
-        System.out.println("x: " + gem1.getX() + ", y: " + gem1.getY());
-        System.out.println("x: " + gem2.getX() + ", y: " + gem2.getY());
-        System.out.println("x: " + gem3.getX() + ", y: " + gem3.getY());
-        System.out.println("x: " + gem4.getX() + ", y: " + gem4.getY());
-        System.out.println("x: " + gem5.getX() + ", y: " + gem5.getY());
+        int g3x = randomX();
+        int g3y = randomY();
+        System.out.println();
+        
+        int g4x = randomX();
+        int g4y = randomY();
+        System.out.println();
+        
+        int g5x = randomX();
+        int g5y = randomY();
+        System.out.println();
+        
+        this.add(gem1);
+        this.add(gem2);
+        this.add(gem3);
+        this.add(gem4);
+        this.add(gem5);
+       
+        gem1.setLocation(g1x, g1y);
+        gem2.setLocation(g2x, g2y);
+        gem3.setLocation(g3x, g3y);
+        gem4.setLocation(g4x, g4y);
+        gem5.setLocation(g5x, g5y);
+        
     }
     
     
@@ -166,8 +197,6 @@ public class PlaySecondScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
-        setPreferredSize(new java.awt.Dimension(600, 400));
-        setSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -235,15 +264,15 @@ public class PlaySecondScreen extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(gem1)
-                .addGap(136, 136, 136)
+                .addGap(81, 81, 81)
                 .addComponent(gem3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(79, 79, 79)
                 .addComponent(gem5)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(gem2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(gem4)
                 .addGap(149, 149, 149))
         );
@@ -253,13 +282,13 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gem5)
-                            .addComponent(gem3))
+                        .addComponent(gem5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(gem4))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(gem1)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gem1)
+                            .addComponent(gem3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(gem2)))
                 .addContainerGap())
@@ -293,6 +322,17 @@ public class PlaySecondScreen extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 151, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 124, Short.MAX_VALUE)
+        );
+
         hint.setFont(new java.awt.Font("Courier 10 Pitch", 1, 48)); // NOI18N
         hint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hint.setText("ct");
@@ -300,57 +340,44 @@ public class PlaySecondScreen extends javax.swing.JFrame {
 
         previousResult.setText("Round 1 | Previous Result: ");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(previousResult)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(hint)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 73, Short.MAX_VALUE)
-                .addComponent(previousResult))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(15, 15, 15)
-                    .addComponent(hint)
-                    .addContainerGap(15, Short.MAX_VALUE)))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(hint)
+                        .addGap(208, 208, 208)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(previousResult)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(hint)
+                        .addGap(26, 26, 26)
+                        .addComponent(previousResult)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -390,29 +417,29 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         } else {
             randomizeHintColor();
             randomizeHintName();
+            randomizeGems();
+            
         }
     }
     
     private void gem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem1ActionPerformed
-        generalButtonAction(Color.CYAN);
-        System.out.println(gem1.getText());
-
+        generalButtonAction(gem1.getForeground());
     }//GEN-LAST:event_gem1ActionPerformed
 
     private void gem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem2ActionPerformed
-        generalButtonAction(Color.GREEN);
+        generalButtonAction(gem2.getForeground());
     }//GEN-LAST:event_gem2ActionPerformed
 
     private void gem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem3ActionPerformed
-        generalButtonAction(PURPLE);
+        generalButtonAction(gem3.getForeground());
     }//GEN-LAST:event_gem3ActionPerformed
 
     private void gem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem4ActionPerformed
-        generalButtonAction(Color.RED);
+        generalButtonAction(gem4.getForeground());
     }//GEN-LAST:event_gem4ActionPerformed
 
     private void gem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gem5ActionPerformed
-        generalButtonAction(Color.YELLOW);
+        generalButtonAction(gem5.getForeground());
     }//GEN-LAST:event_gem5ActionPerformed
     
     /**
@@ -421,27 +448,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlaySecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlaySecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlaySecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlaySecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
