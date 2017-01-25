@@ -1,8 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: PLayScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.0
+* date last modified: 1/18/2017
+*
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly.A new point and click game is started after the 
+* hangman game ends and the total score for both games gives you a total score
+* which may or may not be considered in the high scores menu.
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.Color;
@@ -19,10 +28,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author hh
- */
+//class: PlaySecondScreen
+//purpose of class: This class creates the second game screen we play after
+//the hangman game is skipped or has ended. It takes care of all the logic 
+//of the game.
 public class PlaySecondScreen extends javax.swing.JFrame {
     public Point center;
     private int rounds = 5;
@@ -32,9 +41,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     private JButton[] gems = new JButton[5];
     private int gemHeight;
     private int gemWidth;
-    /**
-     * Creates new form PlaySecondScreen
-     */
+    
+    //constructor: PlaySecondScreen
+    //purpose: This is the constructor and it initializes the objects and instance variables.
+    // It also calls currentTIme() and currentDate() which are needed to set the date and time in the frame.
+    // It uses "center" to always display the game window in the center of the screen. 
     public PlaySecondScreen(int firstScore) {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         totalScore = firstScore;       
@@ -53,7 +64,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         currentDate();        
     }
     
-    // Used to link 
+    //method: setGemColor
+    //purpose: Used to link 
     private void setGemColor() {
         gem1.setForeground(Color.BLUE);
         gem2.setForeground(Color.GREEN);
@@ -62,9 +74,10 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         gem5.setForeground(Color.YELLOW);
     }
 
-    // Sets the bounds of the button inside a rectangle region inside jPanel5
-    // I chose 470 width to make sure they don't spawn and cut off the window
-    // I chose 70 height to make sure they don't cut off
+    //method: setRandomBounds
+    // purpose: Sets the bounds of the button inside a rectangle region inside jPanel5
+    // we chose 470 width to make sure they don't spawn and cut off the window
+    // we chose 70 height to make sure they don't cut off
     private void setRandomBounds(JButton gem) {
         Random random = new Random();
         do {
@@ -75,7 +88,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         jPanel5.add(gem);
     } 
     
-    // Given one gme, check if its bounds touch any other one
+    //method: intersectsOtherGems
+    //purpose: Given one gem, check if its bounds touch any other gem
     private boolean intersectsOtherGems(JButton gem) {
         Rectangle bounds = gem.getBounds();
         
@@ -89,8 +103,9 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         return false;
     }
     
-    // Randomizes everything every new round. Changes the hint's text and color.
-    // Randomly places the buttons inside the jPanel5 region and don't touch other ones.
+    //method: randomizeAll
+    //purpose: Randomizes everything every new round. Changes the hint's text and color.
+    //Randomly places the buttons inside the jPanel5 region and don't touch other ones.
     private void randomizeAll() {
             randomizeHintColor();
             randomizeHintName();
@@ -109,7 +124,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
             }          
     }
     
-    // Randomizes the hint's actual color font.
+    //method: randomizeHintColor
+    //purpose: Randomizes the hint's actual color font.
     private void randomizeHintColor() {
         int num = ThreadLocalRandom.current().nextInt() % 5;
         switch (num) {
@@ -126,7 +142,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         }
     }
     
-    // Changes hint to be one of the following strings.
+    //method: randomizeHintName
+    //purpose: Changes hint to be one of the following strings.
     private void randomizeHintName() {
         int num = ThreadLocalRandom.current().nextInt() % 5;
         switch (num) {
@@ -143,6 +160,8 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         }
     }
     
+    //method: currentDate
+    //purpose: This method returns the current date in the Month, dd, year format.
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
         Calendar cal = new GregorianCalendar();
@@ -151,6 +170,9 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         date.setText(strDate);
     }    
     
+    //method: currentTime
+    //purpose: This method updates the second in the clock by having the thread resume after being
+    //put to sleep for 1 second so that it can update the seconds.
     public void currentTime() {
         Thread clock = new Thread() {
             public void run() {
@@ -402,6 +424,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //method: generalButtionAction
+    //purpose: checks if the gem clicked is the correct color of the text. Gives 
+    //user 5 rounds to play and displays a message if they clicked the correct
+    //gem or incorrect gem. Also updates the users score
     private void generalButtonAction(Color color) {
         
         rounds--;
