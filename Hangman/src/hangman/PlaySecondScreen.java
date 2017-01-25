@@ -8,6 +8,7 @@ package hangman;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.Rectangle;
 import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,7 +16,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -25,90 +25,91 @@ import javax.swing.JOptionPane;
  */
 public class PlaySecondScreen extends javax.swing.JFrame {
     public Point center;
-    private int rounds = 100;
+    private int rounds = 5;
     private int totalScore;
     private final Color PURPLE = new Color(150, 0, 255);
-    private int[][] coordinates;
     private int gemCount = 5;
-    private JButton[] gems;
+    private JButton[] gems = new JButton[5];
+    private int gemHeight;
+    private int gemWidth;
     /**
      * Creates new form PlaySecondScreen
      */
     public PlaySecondScreen(int firstScore) {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-        totalScore = firstScore;
-       
+        totalScore = firstScore;       
         initComponents();
+        gemHeight = gem1.getHeight();
+        gemWidth = gem1.getWidth();
+        gems[0] = gem1;
+        gems[1] = gem2;
+        gems[2] = gem3;
+        gems[3] = gem4;
+        gems[4] = gem5;
         previousResult.setText("Round 1 | Previous Result: ");
-        randomizeHintName();
-        randomizeHintColor();
+        randomizeAll();
         setGemColor();
         currentTime();
-        currentDate();
+        currentDate();        
     }
     
-    public void setGemColor() {
+    // Used to link 
+    private void setGemColor() {
         gem1.setForeground(Color.BLUE);
         gem2.setForeground(Color.GREEN);
         gem3.setForeground(PURPLE);
         gem4.setForeground(Color.RED);
         gem5.setForeground(Color.YELLOW);
     }
+
+    // Sets the bounds of the button inside a rectangle region inside jPanel5
+    // I chose 470 width to make sure they don't spawn and cut off the window
+    // I chose 70 height to make sure they don't cut off
+    private void setRandomBounds(JButton gem) {
+        Random random = new Random();
+        do {
+            int x2 = ThreadLocalRandom.current().nextInt() % 470;
+            int y2 = ThreadLocalRandom.current().nextInt() % 70;      
+            gem.setBounds(gem.getWidth() + x2, gem.getHeight() + y2, gem.getWidth(), gem.getHeight());
+        } while (!gem.getBounds().intersects(new Rectangle(100,100,350,150)));
+        jPanel5.add(gem);
+    } 
     
-    public int randomX() {
-        int max = 500;
-        int min = 0;
-        Random rand = new Random();
-        int x = rand.nextInt((max - min) + 1) + min;
-        System.out.print("x: " + x);
-        return x;
+    // Given one gme, check if its bounds touch any other one
+    private boolean intersectsOtherGems(JButton gem) {
+        Rectangle bounds = gem.getBounds();
+        
+        for (JButton other : gems) {
+            if (!other.equals(gem)) {
+                if (bounds.intersects(other.getBounds())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
-    public int randomY() {
-        int max = 300;
-        int min = 100;
-        Random rand = new Random();
-        int y = rand.nextInt((max - min) + 1) + min;
-        System.out.print("y: " + y);
-        return y;
+    // Randomizes everything every new round. Changes the hint's text and color.
+    // Randomly places the buttons inside the jPanel5 region and don't touch other ones.
+    private void randomizeAll() {
+            randomizeHintColor();
+            randomizeHintName();
+            
+            // Makes all buttons randomly placed, doesn't check for intersects yet
+            for (JButton gem : gems) {
+                setRandomBounds(gem);
+            }
+            
+            // For every button, check if it touches the other ones
+            // If it does, then keep randomly sticking it into a random place inside jPanel5
+            for (JButton gem : gems) {
+                while(intersectsOtherGems(gem) == true) {
+                    setRandomBounds(gem);
+                }
+            }          
     }
     
-    public void randomizeGems() {
-        int g1x = randomX();
-        int g1y = randomY();
-        System.out.println();
-        
-        int g2x = randomX();
-        int g2y = randomY();
-        System.out.println();
-        
-        int g3x = randomX();
-        int g3y = randomY();
-        System.out.println();
-        
-        int g4x = randomX();
-        int g4y = randomY();
-        System.out.println();
-        
-        int g5x = randomX();
-        int g5y = randomY();
-        System.out.println();
-        
-        this.add(gem1);
-        this.add(gem2);
-        this.add(gem3);
-        this.add(gem4);
-        this.add(gem5);
-       
-        gem1.setLocation(g1x, g1y);
-        gem2.setLocation(g2x, g2y);
-        gem3.setLocation(g3x, g3y);
-        gem4.setLocation(g4x, g4y);
-        gem5.setLocation(g5x, g5y);
-        
-    }
-    
-    
+    // Randomizes the hint's actual color font.
     private void randomizeHintColor() {
         int num = ThreadLocalRandom.current().nextInt() % 5;
         switch (num) {
@@ -125,6 +126,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         }
     }
     
+    // Changes hint to be one of the following strings.
     private void randomizeHintName() {
         int num = ThreadLocalRandom.current().nextInt() % 5;
         switch (num) {
@@ -197,8 +199,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
+        setPreferredSize(new java.awt.Dimension(600, 400));
+        setSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -268,11 +273,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                 .addComponent(gem3)
                 .addGap(79, 79, 79)
                 .addComponent(gem5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(gem2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(gem4)
                 .addGap(149, 149, 149))
         );
@@ -283,7 +288,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(gem5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addComponent(gem4))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,24 +319,13 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 124, Short.MAX_VALUE)
-        );
 
         hint.setFont(new java.awt.Font("Courier 10 Pitch", 1, 48)); // NOI18N
         hint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -339,6 +333,32 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         hint.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         previousResult.setText("Round 1 | Previous Result: ");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(hint)
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(previousResult)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(hint)
+                .addGap(0, 33, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(64, 64, 64)
+                    .addComponent(previousResult)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -350,36 +370,22 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(hint)
-                        .addGap(208, 208, 208)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(previousResult)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(hint)
-                        .addGap(26, 26, 26)
-                        .addComponent(previousResult)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -407,7 +413,6 @@ public class PlaySecondScreen extends javax.swing.JFrame {
             previousResult.setText("Round " + (6 - rounds) + " | Previous Result: Incorrect!");
         }
         
-        
         if (rounds == 0) {
             SkipScreen sScreen = new SkipScreen(totalScore);
             sScreen.setScore(Integer.toString(totalScore));
@@ -415,10 +420,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);            
             dispose();
         } else {
-            randomizeHintColor();
-            randomizeHintName();
-            randomizeGems();
-            
+            randomizeAll();     
         }
     }
     
