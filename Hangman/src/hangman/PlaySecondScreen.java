@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
 //of the game.
 public class PlaySecondScreen extends javax.swing.JFrame {
     public Point center;
-    private int rounds = 5;
+    private int rounds = 50;
     private int totalScore;
     private final Color PURPLE = new Color(150, 0, 255);
     private int gemCount = 5;
@@ -81,11 +81,11 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     private void setRandomBounds(JButton gem) {
         Random random = new Random();
         do {
-            int x2 = ThreadLocalRandom.current().nextInt() % 470;
-            int y2 = ThreadLocalRandom.current().nextInt() % 70;      
+            int x2 = ThreadLocalRandom.current().nextInt() % 600;
+            int y2 = ThreadLocalRandom.current().nextInt() % 400;      
             gem.setBounds(gem.getWidth() + x2, gem.getHeight() + y2, gem.getWidth(), gem.getHeight());
-        } while (!gem.getBounds().intersects(new Rectangle(100,100,350,150)));
-        jPanel5.add(gem);
+        } while (!gem.getBounds().intersects(new Rectangle(90,230,400,80)));
+        mainPanel.add(gem);
     } 
     
     //method: intersectsOtherGems
@@ -204,13 +204,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        gem1 = new javax.swing.JButton();
-        gem2 = new javax.swing.JButton();
-        gem3 = new javax.swing.JButton();
-        gem4 = new javax.swing.JButton();
-        gem5 = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         date = new javax.swing.JLabel();
@@ -218,108 +212,18 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         hint = new javax.swing.JLabel();
         previousResult = new javax.swing.JLabel();
+        gem1 = new javax.swing.JButton();
+        gem2 = new javax.swing.JButton();
+        gem3 = new javax.swing.JButton();
+        gem4 = new javax.swing.JButton();
+        gem5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setSize(new java.awt.Dimension(600, 400));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        gem1.setBackground(new java.awt.Color(255, 255, 255));
-        gem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/blue_gem.jpg"))); // NOI18N
-        gem1.setBorder(null);
-        gem1.setBorderPainted(false);
-        gem1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
-        gem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gem1ActionPerformed(evt);
-            }
-        });
-
-        gem2.setBackground(new java.awt.Color(255, 255, 255));
-        gem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/green_gem.jpg"))); // NOI18N
-        gem2.setBorder(null);
-        gem2.setBorderPainted(false);
-        gem2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
-        gem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gem2ActionPerformed(evt);
-            }
-        });
-
-        gem3.setBackground(new java.awt.Color(255, 255, 255));
-        gem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/purple_gem.jpg"))); // NOI18N
-        gem3.setBorder(null);
-        gem3.setBorderPainted(false);
-        gem3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
-        gem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gem3ActionPerformed(evt);
-            }
-        });
-
-        gem4.setBackground(new java.awt.Color(255, 255, 255));
-        gem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/red_gem.jpg"))); // NOI18N
-        gem4.setBorder(null);
-        gem4.setBorderPainted(false);
-        gem4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
-        gem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gem4ActionPerformed(evt);
-            }
-        });
-
-        gem5.setBackground(new java.awt.Color(255, 255, 255));
-        gem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/yellow_gem.jpg"))); // NOI18N
-        gem5.setBorder(null);
-        gem5.setBorderPainted(false);
-        gem5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
-        gem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gem5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gem1)
-                .addGap(81, 81, 81)
-                .addComponent(gem3)
-                .addGap(79, 79, 79)
-                .addComponent(gem5)
-                .addContainerGap(104, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(gem2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(gem4)
-                .addGap(149, 149, 149))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(gem5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                        .addComponent(gem4))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gem1)
-                            .addComponent(gem3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gem2)))
-                .addContainerGap())
-        );
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -382,43 +286,123 @@ public class PlaySecondScreen extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        gem1.setBackground(new java.awt.Color(255, 255, 255));
+        gem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/blue_gem.jpg"))); // NOI18N
+        gem1.setBorder(null);
+        gem1.setBorderPainted(false);
+        gem1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
+        gem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gem1ActionPerformed(evt);
+            }
+        });
+
+        gem2.setBackground(new java.awt.Color(255, 255, 255));
+        gem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/green_gem.jpg"))); // NOI18N
+        gem2.setBorder(null);
+        gem2.setBorderPainted(false);
+        gem2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
+        gem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gem2ActionPerformed(evt);
+            }
+        });
+
+        gem3.setBackground(new java.awt.Color(255, 255, 255));
+        gem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/purple_gem.jpg"))); // NOI18N
+        gem3.setBorder(null);
+        gem3.setBorderPainted(false);
+        gem3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
+        gem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gem3ActionPerformed(evt);
+            }
+        });
+
+        gem4.setBackground(new java.awt.Color(255, 255, 255));
+        gem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/red_gem.jpg"))); // NOI18N
+        gem4.setBorder(null);
+        gem4.setBorderPainted(false);
+        gem4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
+        gem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gem4ActionPerformed(evt);
+            }
+        });
+
+        gem5.setBackground(new java.awt.Color(255, 255, 255));
+        gem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/yellow_gem.jpg"))); // NOI18N
+        gem5.setBorder(null);
+        gem5.setBorderPainted(false);
+        gem5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
+        gem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gem5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(gem1)
+                .addGap(30, 30, 30)
+                .addComponent(gem2)
+                .addGap(32, 32, 32)
+                .addComponent(gem3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(gem4)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(gem5)
+                        .addGap(64, 64, 64))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(167, 167, 167))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gem5)
+                        .addGap(38, 38, 38)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gem4)
+                            .addComponent(gem2))
+                        .addGap(23, 23, 23))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                .addComponent(gem1)
+                                .addGap(97, 97, 97))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                .addComponent(gem3)
+                                .addGap(83, 83, 83))))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -495,11 +479,10 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     private javax.swing.JButton gem4;
     private javax.swing.JButton gem5;
     private javax.swing.JLabel hint;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel previousResult;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
