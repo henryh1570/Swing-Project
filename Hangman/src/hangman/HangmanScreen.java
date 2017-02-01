@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 //purpose of class: This class is the class that takes care of all the interactions
 //in the game. It uses the WordBank class in order to get the word and the CheckWord
 //class in order to check if the user guesses correctly.
-public class PlayScreen extends javax.swing.JFrame {
+public class HangmanScreen extends javax.swing.JFrame {
     public Point center;
     public WordBank wb;
     public CheckWord cw;
@@ -44,7 +44,7 @@ public class PlayScreen extends javax.swing.JFrame {
     // purpose: This is the constructor and it initializes the objects and instance variables.
     // It also calls currentTIme() and currentDate() which are needed to set the date and time in the frame.
     // It uses "center" to always display the game window in the center of the screen.
-    public PlayScreen() {
+    public HangmanScreen() {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         wb = new WordBank();
         score="100";
@@ -105,7 +105,7 @@ public class PlayScreen extends javax.swing.JFrame {
     //It also verifies whether or not the guess is correct and updates the score
     //as well as changes the text from "Incorrect!" to "Correct!"
     public void displayGuessedString() {
-        PlaySecondScreen pSS;
+        ColorGameScreen pSS;
         numWrong = cw.numWrongGuesses;
         int numGuesses = cw.numGuesses;
         jLabel6.setText(guessedString);
@@ -135,7 +135,7 @@ public class PlayScreen extends javax.swing.JFrame {
                     case 6:
                         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
                         score = "40";
-                        pSS = new PlaySecondScreen(40);
+                        pSS = new ColorGameScreen(40);
                         pSS.setVisible(true);
                         pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                         dispose();
@@ -148,7 +148,7 @@ public class PlayScreen extends javax.swing.JFrame {
             wrongLabel.setText("Correct!");
             boolean win = cw.checkGuesses();
             if(cw.checkGuesses()) {
-                pSS = new PlaySecondScreen(Integer.parseInt(score));
+                pSS = new ColorGameScreen(Integer.parseInt(score));
                 pSS.setVisible(true);
                 pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                 dispose();
@@ -520,7 +520,7 @@ public class PlayScreen extends javax.swing.JFrame {
     //opted out of the game.
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
-            PlaySecondScreen pSS = new PlaySecondScreen(0);
+            ColorGameScreen pSS = new ColorGameScreen(0);
             pSS.setSize(600,400);
             pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             pSS.setVisible(true);
@@ -800,7 +800,7 @@ public class PlayScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlayScreen().setVisible(true);
+                new HangmanScreen().setVisible(true);
                 
             }
         });

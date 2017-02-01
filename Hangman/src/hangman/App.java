@@ -17,7 +17,7 @@ import java.awt.GraphicsEnvironment;
 
 //class: Hangman
 //purpose: This class is the starting point for the game.
-public class Hangman {
+public class App {
 
     //method: Main method
     //purpose: Creates the objects of the other classes and calls the initial TitleScreen, pauses for 3 seconds and then calls MenuScreen

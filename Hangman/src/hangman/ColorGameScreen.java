@@ -32,9 +32,9 @@ import javax.swing.JOptionPane;
 //purpose of class: This class creates the second game screen we play after
 //the hangman game is skipped or has ended. It takes care of all the logic 
 //of the game.
-public class PlaySecondScreen extends javax.swing.JFrame {
+public class ColorGameScreen extends javax.swing.JFrame {
     public Point center;
-    private int rounds = 50;
+    private int rounds = 5;
     private int totalScore;
     private final Color PURPLE = new Color(150, 0, 255);
     private int gemCount = 5;
@@ -46,7 +46,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
     //purpose: This is the constructor and it initializes the objects and instance variables.
     // It also calls currentTIme() and currentDate() which are needed to set the date and time in the frame.
     // It uses "center" to always display the game window in the center of the screen. 
-    public PlaySecondScreen(int firstScore) {
+    public ColorGameScreen(int firstScore) {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         totalScore = firstScore;       
         initComponents();
@@ -425,8 +425,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         }
         
         if (rounds == 0) {
-            SkipScreen sScreen = new SkipScreen(totalScore);
-            sScreen.setScore(Integer.toString(totalScore));
+            SudokuScreen sScreen = new SudokuScreen(totalScore);
             sScreen.setVisible(true);
             sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);            
             dispose();
@@ -466,7 +465,7 @@ public class PlaySecondScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlaySecondScreen(50).setVisible(true);
+                new ColorGameScreen(50).setVisible(true);
             }
         });
     }

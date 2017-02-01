@@ -135,7 +135,7 @@ public class MenuScreen extends javax.swing.JFrame {
     //purpose: This creates the event for the "PLAY" button. Once the button is clicked, it takes the user to the PlayScreen.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("PLAY")) {
-            PlayScreen pScreen = new PlayScreen();
+            HangmanScreen pScreen = new HangmanScreen();
             pScreen.setVisible(true);
             pScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             pScreen.setSize(600, 400);
