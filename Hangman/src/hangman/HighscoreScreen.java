@@ -29,6 +29,8 @@ public class HighscoreScreen extends javax.swing.JFrame {
         loadScores();
     }
     
+    //method: loadScores
+    //purpose: dynamically load the previous high scores to view.
     public void loadScores() {
         ScoreSerializer sS = new ScoreSerializer();
         
@@ -48,6 +50,25 @@ public class HighscoreScreen extends javax.swing.JFrame {
         score4.setText(rawScores[3].getName() + "..." + rawScores[3].getScore());
         score5.setText(rawScores[4].getName() + "..." + rawScores[4].getScore());
     }
+    
+    //method: eraseScores
+    //purpose: delete all highscores to reset it.
+    public void eraseScores() {
+        ScoreSerializer sS = new ScoreSerializer();
+
+        System.out.println("Initialize Scores");
+        rawScores = new Score[5];
+        for(int i = 0; i < rawScores.length; i++) {
+            rawScores[i] = new Score("AAA", 0);
+        }
+        sS.saveScores("scores", rawScores);
+        
+        score1.setText(rawScores[0].getName() + "..." + rawScores[0].getScore());
+        score2.setText(rawScores[1].getName() + "..." + rawScores[1].getScore());
+        score3.setText(rawScores[2].getName() + "..." + rawScores[2].getScore());
+        score4.setText(rawScores[3].getName() + "..." + rawScores[3].getScore());
+        score5.setText(rawScores[4].getName() + "..." + rawScores[4].getScore());       
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +82,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        eraseButton = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -71,6 +93,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(600, 40));
 
         jButton1.setText("Back");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -81,37 +104,37 @@ public class HighscoreScreen extends javax.swing.JFrame {
         title.setForeground(new java.awt.Color(0, 153, 102));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("HIGHSCORES");
-        title.setToolTipText("");
+        title.setToolTipText("All time high");
         title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         score1.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         score1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score1.setText("ABC...00000");
-        score1.setToolTipText("");
+        score1.setToolTipText("Is this you?");
         score1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         score2.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         score2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score2.setText("ABC...00000");
-        score2.setToolTipText("");
+        score2.setToolTipText("Is this you?");
         score2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         score3.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         score3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score3.setText("ABC...00000");
-        score3.setToolTipText("");
+        score3.setToolTipText("Is this you?");
         score3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         score4.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         score4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score4.setText("ABC...00000");
-        score4.setToolTipText("");
+        score4.setToolTipText("Is this you?");
         score4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         score5.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
         score5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score5.setText("ABC...00000");
-        score5.setToolTipText("");
+        score5.setToolTipText("Is this you?");
         score5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -134,8 +157,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(score1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,8 +168,16 @@ public class HighscoreScreen extends javax.swing.JFrame {
                 .addComponent(score4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(score5)
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        eraseButton.setText("Erase");
+        eraseButton.setToolTipText("Reset scores");
+        eraseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eraseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,19 +187,24 @@ public class HighscoreScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eraseButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 61, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(eraseButton))
                 .addGap(32, 32, 32))
         );
 
@@ -189,6 +224,10 @@ public class HighscoreScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void eraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eraseButtonActionPerformed
+        eraseScores();
+    }//GEN-LAST:event_eraseButtonActionPerformed
+
     //method: Main method
     //purpose: To run the HighscoreScreen class' JFrame form.
     public static void main(String args[]) {
@@ -201,6 +240,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton eraseButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;

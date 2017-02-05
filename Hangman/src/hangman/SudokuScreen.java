@@ -196,6 +196,7 @@ public class SudokuScreen extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel2.setToolTipText("Date and Time");
 
         date.setText("Date");
         jPanel2.add(date);
@@ -219,8 +220,10 @@ public class SudokuScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Abyssinica SIL", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 102));
         jLabel1.setText("SUDOKU");
+        jLabel1.setToolTipText("Final Game");
 
         submitButton.setText("Submit");
+        submitButton.setToolTipText("Check answers");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
@@ -228,6 +231,7 @@ public class SudokuScreen extends javax.swing.JFrame {
         });
 
         quitButton.setText("Quit");
+        quitButton.setToolTipText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quitButtonActionPerformed(evt);
@@ -240,7 +244,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         sudokuTopLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sudokuTopLeft.setLayout(new java.awt.GridLayout(3, 3));
 
+        num1.setEditable(false);
         num1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num1.setText("8");
+        num1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                num1ActionPerformed(evt);
+            }
+        });
         sudokuTopLeft.add(num1);
 
         num2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -261,7 +272,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuTopLeft.add(num7);
 
+        num8.setEditable(false);
         num8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num8.setText("1");
         sudokuTopLeft.add(num8);
 
         num9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -272,13 +285,17 @@ public class SudokuScreen extends javax.swing.JFrame {
         sudokuTopMid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sudokuTopMid.setLayout(new java.awt.GridLayout(3, 3));
 
+        num10.setEditable(false);
         num10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num10.setText("4");
         sudokuTopMid.add(num10);
 
         num11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuTopMid.add(num11);
 
+        num12.setEditable(false);
         num12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num12.setText("6");
         sudokuTopMid.add(num12);
 
         num13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -310,10 +327,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         num20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuTopRight.add(num20);
 
+        num21.setEditable(false);
         num21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num21.setText("7");
         sudokuTopRight.add(num21);
 
+        num22.setEditable(false);
         num22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num22.setText("4");
         sudokuTopRight.add(num22);
 
         num23.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -322,10 +343,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         num24.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuTopRight.add(num24);
 
+        num25.setEditable(false);
         num25.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num25.setText("6");
         sudokuTopRight.add(num25);
 
+        num26.setEditable(false);
         num26.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num26.setText("5");
         sudokuTopRight.add(num26);
 
         num27.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -336,13 +361,17 @@ public class SudokuScreen extends javax.swing.JFrame {
         sudokuMidLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sudokuMidLeft.setLayout(new java.awt.GridLayout(3, 3));
 
+        num28.setEditable(false);
         num28.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num28.setText("5");
         sudokuMidLeft.add(num28);
 
         num29.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidLeft.add(num29);
 
+        num30.setEditable(false);
         num30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num30.setText("9");
         sudokuMidLeft.add(num30);
 
         num31.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -357,10 +386,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         num34.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidLeft.add(num34);
 
+        num35.setEditable(false);
         num35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num35.setText("4");
         sudokuMidLeft.add(num35);
 
+        num36.setEditable(false);
         num36.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num36.setText("8");
         sudokuMidLeft.add(num36);
 
         sudokuBigPanel.add(sudokuMidLeft);
@@ -371,7 +404,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num37.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidMid.add(num37);
 
+        num38.setEditable(false);
         num38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num38.setText("3");
         sudokuMidMid.add(num38);
 
         num39.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -380,7 +415,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num40.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidMid.add(num40);
 
+        num41.setEditable(false);
         num41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num41.setText("7");
         sudokuMidMid.add(num41);
 
         num42.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -389,7 +426,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num43.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidMid.add(num43);
 
+        num44.setEditable(false);
         num44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num44.setText("2");
         sudokuMidMid.add(num44);
 
         num45.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -400,10 +439,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         sudokuMidRight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sudokuMidRight.setLayout(new java.awt.GridLayout(3, 3));
 
+        num46.setEditable(false);
         num46.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num46.setText("7");
         sudokuMidRight.add(num46);
 
+        num47.setEditable(false);
         num47.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num47.setText("8");
         sudokuMidRight.add(num47);
 
         num48.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -418,13 +461,17 @@ public class SudokuScreen extends javax.swing.JFrame {
         num51.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidRight.add(num51);
 
+        num52.setEditable(false);
         num52.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num52.setText("1");
         sudokuMidRight.add(num52);
 
         num53.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuMidRight.add(num53);
 
+        num54.setEditable(false);
         num54.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num54.setText("3");
         sudokuMidRight.add(num54);
 
         sudokuBigPanel.add(sudokuMidRight);
@@ -435,10 +482,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         num55.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomLeft.add(num55);
 
+        num56.setEditable(false);
         num56.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num56.setText("5");
         sudokuBottomLeft.add(num56);
 
+        num57.setEditable(false);
         num57.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num57.setText("2");
         sudokuBottomLeft.add(num57);
 
         num58.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -447,10 +498,14 @@ public class SudokuScreen extends javax.swing.JFrame {
         num59.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomLeft.add(num59);
 
+        num60.setEditable(false);
         num60.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num60.setText("1");
         sudokuBottomLeft.add(num60);
 
+        num61.setEditable(false);
         num61.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num61.setText("3");
         sudokuBottomLeft.add(num61);
 
         num62.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -482,13 +537,17 @@ public class SudokuScreen extends javax.swing.JFrame {
         num69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomMid.add(num69);
 
+        num70.setEditable(false);
         num70.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num70.setText("9");
         sudokuBottomMid.add(num70);
 
         num71.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomMid.add(num71);
 
+        num72.setEditable(false);
         num72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num72.setText("2");
         sudokuBottomMid.add(num72);
 
         sudokuBigPanel.add(sudokuBottomMid);
@@ -499,7 +558,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomRight.add(num73);
 
+        num74.setEditable(false);
         num74.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num74.setText("9");
         sudokuBottomRight.add(num74);
 
         num75.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -520,7 +581,9 @@ public class SudokuScreen extends javax.swing.JFrame {
         num80.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sudokuBottomRight.add(num80);
 
+        num81.setEditable(false);
         num81.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        num81.setText("5");
         sudokuBottomRight.add(num81);
 
         sudokuBigPanel.add(sudokuBottomRight);
@@ -581,6 +644,10 @@ public class SudokuScreen extends javax.swing.JFrame {
         sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);            
         dispose();
     }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void num1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_num1ActionPerformed
 
     
     //method: generalButtionAction

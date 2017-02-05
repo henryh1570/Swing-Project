@@ -206,26 +206,31 @@ public class HangmanScreen extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Hangman");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 20, -1, -1));
+        jLabel1.setToolTipText("Game One");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jButton14.setText("Skip");
+        jButton14.setToolTipText("Go to Colorgame. Earn 0 pts.");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
+        jLabel4.setToolTipText("Hang in there.");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 200, 170));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
+        jLabel5.setToolTipText("Guess this word.");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -233,6 +238,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
         buttonA.setText("A");
+        buttonA.setToolTipText("Pick one");
         buttonA.setPreferredSize(new java.awt.Dimension(45, 29));
         buttonA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,6 +248,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(buttonA);
 
         jButton2.setText("B");
+        jButton2.setToolTipText("Pick one");
         jButton2.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +258,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton2);
 
         jButton3.setText("C");
+        jButton3.setToolTipText("Pick one");
         jButton3.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +268,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton3);
 
         jButton4.setText("D");
+        jButton4.setToolTipText("Pick one");
         jButton4.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +278,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton4);
 
         jButton5.setText("E");
+        jButton5.setToolTipText("Pick one");
         jButton5.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +288,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton5);
 
         jButton6.setText("F");
+        jButton6.setToolTipText("Pick one");
         jButton6.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,6 +298,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton6);
 
         jButton7.setText("G");
+        jButton7.setToolTipText("Pick one");
         jButton7.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +308,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton7);
 
         jButton8.setText("H");
+        jButton8.setToolTipText("Pick one");
         jButton8.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,6 +318,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton8);
 
         jButton9.setText("I");
+        jButton9.setToolTipText("Pick one");
         jButton9.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +328,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton9);
 
         jButton10.setText("J");
+        jButton10.setToolTipText("Pick one");
         jButton10.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,6 +338,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton10);
 
         jButton11.setText("K");
+        jButton11.setToolTipText("Pick one");
         jButton11.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +348,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton11);
 
         jButton12.setText("L");
+        jButton12.setToolTipText("Pick one");
         jButton12.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +358,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton12);
 
         jButton13.setText("M");
+        jButton13.setToolTipText("Pick one");
         jButton13.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +368,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton13);
 
         jButton15.setText("N");
+        jButton15.setToolTipText("Pick one");
         jButton15.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +378,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton15);
 
         jButton16.setText("O");
+        jButton16.setToolTipText("Pick one");
         jButton16.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,6 +388,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton16);
 
         jButton17.setText("P");
+        jButton17.setToolTipText("Pick one");
         jButton17.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,6 +398,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton17);
 
         jButton18.setText("Q");
+        jButton18.setToolTipText("Pick one");
         jButton18.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,6 +408,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton18);
 
         jButton19.setText("R");
+        jButton19.setToolTipText("Pick one");
         jButton19.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,6 +418,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton19);
 
         jButton20.setText("S");
+        jButton20.setToolTipText("Pick one");
         jButton20.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,6 +428,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton20);
 
         jButton21.setText("T");
+        jButton21.setToolTipText("Pick one");
         jButton21.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,6 +438,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton21);
 
         jButton22.setText("U");
+        jButton22.setToolTipText("Pick one");
         jButton22.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,6 +448,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton22);
 
         jButton23.setText("V");
+        jButton23.setToolTipText("Pick one");
         jButton23.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,6 +458,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton23);
 
         jButton24.setText("W");
+        jButton24.setToolTipText("Pick one");
         jButton24.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,6 +468,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton24);
 
         jButton26.setText("X");
+        jButton26.setToolTipText("Pick one");
         jButton26.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -449,6 +478,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton26);
 
         jButton27.setText("Y");
+        jButton27.setToolTipText("Pick one");
         jButton27.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,6 +488,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel3.add(jButton27);
 
         jButton28.setText("Z");
+        jButton28.setToolTipText("Pick one");
         jButton28.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,8 +499,8 @@ public class HangmanScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 540, 110));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.setToolTipText("Date and Time");
 
         jLabel2.setText("Date");
         jPanel1.add(jLabel2);
@@ -481,23 +512,20 @@ public class HangmanScreen extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 210, 40));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 210, 40));
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setText("100");
+        jLabel7.setToolTipText("Your current pts.");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 60, 50));
 
         wrongLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -508,6 +536,7 @@ public class HangmanScreen extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 255, 0));
         jLabel9.setText("Score:");
+        jLabel9.setToolTipText("Your current pts.");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 70, 50));
 
         pack();

@@ -52,6 +52,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="toolTipText" type="java.lang.String" value="Back to Menu"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -96,6 +97,7 @@
               <Color blue="0" green="66" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CREDITS"/>
+            <Property name="toolTipText" type="java.lang.String" value="by Team HOALY"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -141,6 +143,7 @@
                   <Font name="DejaVu Sans" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Henry Hu, 010331906"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enjoy the game!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -149,6 +152,7 @@
                   <Font name="DejaVu Sans" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="An Le, 010279841"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enjoy the game!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -157,6 +161,7 @@
                   <Font name="DejaVu Sans" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Luis Cortes, 009642581 "/>
+                <Property name="toolTipText" type="java.lang.String" value="Enjoy the game!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -165,6 +170,7 @@
                   <Font name="DejaVu Sans" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Y-Uyen La, 009542039"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enjoy the game!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -173,6 +179,7 @@
                   <Font name="DejaVu Sans" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Oscar Hernandez, 009030554"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enjoy the game!"/>
               </Properties>
             </Component>
           </SubComponents>

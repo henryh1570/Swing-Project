@@ -50,6 +50,7 @@ public class CreditScreen extends javax.swing.JFrame {
         setTitle("Credits");
 
         jButton1.setText("Back");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -59,21 +60,27 @@ public class CreditScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("FreeSerif", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("CREDITS");
+        jLabel1.setToolTipText("by Team HOALY");
 
         jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         jLabel2.setText("Henry Hu, 010331906");
+        jLabel2.setToolTipText("Enjoy the game!");
 
         jLabel5.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         jLabel5.setText("An Le, 010279841");
+        jLabel5.setToolTipText("Enjoy the game!");
 
         jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         jLabel4.setText("Luis Cortes, 009642581 ");
+        jLabel4.setToolTipText("Enjoy the game!");
 
         jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         jLabel3.setText("Y-Uyen La, 009542039");
+        jLabel3.setToolTipText("Enjoy the game!");
 
         jLabel6.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         jLabel6.setText("Oscar Hernandez, 009030554");
+        jLabel6.setToolTipText("Enjoy the game!");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

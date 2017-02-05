@@ -119,6 +119,7 @@
                     <EmptyBorder/>
                   </Border>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Date and Time"/>
               </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
@@ -146,11 +147,13 @@
               <Color blue="66" green="33" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SUDOKU"/>
+            <Property name="toolTipText" type="java.lang.String" value="Final Game"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="submitButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Submit"/>
+            <Property name="toolTipText" type="java.lang.String" value="Check answers"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
@@ -159,6 +162,7 @@
         <Component class="javax.swing.JButton" name="quitButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Quit"/>
+            <Property name="toolTipText" type="java.lang.String" value="Quit"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quitButtonActionPerformed"/>
@@ -194,8 +198,13 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="num1">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="8"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="num1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num2">
                   <Properties>
@@ -229,7 +238,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num8">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num9">
@@ -255,7 +266,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="num10">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num11">
@@ -265,7 +278,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num12">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="6"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num13">
@@ -326,12 +341,16 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num21">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="7"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num22">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num23">
@@ -346,12 +365,16 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num25">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="6"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num26">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num27">
@@ -377,7 +400,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="num28">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num29">
@@ -387,7 +412,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num30">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="9"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num31">
@@ -412,12 +439,16 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num35">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num36">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="8"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -443,7 +474,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num38">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num39">
@@ -458,7 +491,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num41">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="7"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num42">
@@ -473,7 +508,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num44">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num45">
@@ -499,12 +536,16 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="num46">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="7"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num47">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="8"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num48">
@@ -529,7 +570,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num52">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num53">
@@ -539,7 +582,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num54">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -565,12 +610,16 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num56">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num57">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num58">
@@ -585,12 +634,16 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num60">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num61">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num62">
@@ -651,7 +704,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num70">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="9"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num71">
@@ -661,7 +716,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num72">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -687,7 +744,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num74">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="9"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="num75">
@@ -722,7 +781,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="num81">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                 </Component>
               </SubComponents>

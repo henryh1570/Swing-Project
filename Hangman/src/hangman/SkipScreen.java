@@ -103,12 +103,15 @@ public class SkipScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Your Score...");
+        jLabel1.setToolTipText("Better luck next time");
 
         scoreLabel.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         scoreLabel.setForeground(new java.awt.Color(255, 51, 51));
         scoreLabel.setText("0");
+        scoreLabel.setToolTipText("wow!");
 
         jButton1.setText("End");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,6 +119,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         enterName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterName.setToolTipText("A - Z");
         enterName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterNameActionPerformed(evt);
@@ -123,6 +127,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         saveButton.setText("Save Score");
+        saveButton.setToolTipText("Save?");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -130,6 +135,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         instruction.setText("Enter 3 letters: ");
+        instruction.setToolTipText("A - Z");
 
         javax.swing.GroupLayout highScorePanelLayout = new javax.swing.GroupLayout(highScorePanel);
         highScorePanel.setLayout(highScorePanelLayout);
