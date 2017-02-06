@@ -14,6 +14,9 @@ package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 //class:CreditScreen
 //purpose: This class just displays the name and ID's of everyone in the group.
@@ -25,6 +28,10 @@ public class CreditScreen extends javax.swing.JFrame {
     public CreditScreen() {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
+        jPanel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel1.getActionMap().put("Help", new HelpAction(center));
+        jPanel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel1.getActionMap().put("Close", new CloseAction(this));
     }
 
     /**

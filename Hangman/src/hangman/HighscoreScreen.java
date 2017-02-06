@@ -14,6 +14,9 @@ package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 //class: HighscoreScreen
 //purpose: Currently, this page only displays the default values.
@@ -27,6 +30,10 @@ public class HighscoreScreen extends javax.swing.JFrame {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
         loadScores();
+        jPanel2.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel2.getActionMap().put("Help", new HelpAction(center));
+        jPanel2.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel2.getActionMap().put("Close", new CloseAction(this));
     }
     
     //method: loadScores

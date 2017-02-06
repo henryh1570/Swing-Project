@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +27,9 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 //class: PlaySecondScreen
 //purpose of class: This class creates the second game screen we play after
@@ -61,7 +64,11 @@ public class ColorGameScreen extends javax.swing.JFrame {
         randomizeAll();
         setGemColor();
         currentTime();
-        currentDate();        
+        currentDate();
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        mainPanel.getActionMap().put("Help", new HelpAction(center));
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        mainPanel.getActionMap().put("Close", new CloseAction(this));        
     }
     
     //method: setGemColor

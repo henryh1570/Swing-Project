@@ -14,6 +14,8 @@ package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -27,6 +29,10 @@ public class MenuScreen extends javax.swing.JFrame {
     public MenuScreen() {
         center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
+        jPanel1.getInputMap().put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel1.getActionMap().put("Help", new HelpAction(center));
+        jPanel1.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel1.getActionMap().put("Close", new CloseAction(this));
     }
     
 

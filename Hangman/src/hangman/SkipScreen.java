@@ -14,6 +14,9 @@ package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 //class: SkipScreen
 //purpose of class: This class just displays the score to the user along with an "End" button that takes them back to the menu.
@@ -31,6 +34,10 @@ public class SkipScreen extends javax.swing.JFrame {
         initComponents();
         loadScores();
         this.currentScore = currentScore;
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jLabel1.getActionMap().put("Help", new HelpAction(center));
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jLabel1.getActionMap().put("Close", new CloseAction(this));
         
         // If the current session score is greater than the lowest high score
         if ((currentScore) > rawScores[4].getScore()) {
