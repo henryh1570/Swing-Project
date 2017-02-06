@@ -3,9 +3,9 @@
  * file: SudokuScreen.java author: Luis Cortes, Oscar Hernandez, Henry Hu,
  * Y-Uyen La, and An Le class: CS 245 - Programming Graphical User Interfaces
  * 
-* assignment: Swing Project v1.0 date last modified: 1/18/2017
+ * assignment: Swing Project v1.0 date last modified: 1/18/2017
  * 
-* purpose: This is the third game screen. Runs directly after color game.
+ * purpose: This is the third game screen. Runs directly after color game.
  * 
 ***************************************************************
  */
@@ -14,18 +14,19 @@ package hangman;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.JFrame;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 //class: PlaySecondScreen
 //purpose of class: This class creates the second game screen we play after
@@ -64,6 +65,10 @@ public class SudokuScreen extends javax.swing.JFrame {
         jLabel3.setVisible(false);
         currentTime();
         currentDate();
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        mainPanel.getActionMap().put("Help", new HelpAction(center));
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        mainPanel.getActionMap().put("Close", new CloseAction(this));            
     }
 
     //method: initAnswers
@@ -95,7 +100,6 @@ public class SudokuScreen extends javax.swing.JFrame {
             int temp = Integer.parseInt(values[i]);
             answers.add(temp);
         }
-//        System.out.println("answers: \n" + answers);
 
     }
 

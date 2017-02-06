@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +27,9 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 //class: PlaySecondScreen
 //purpose of class: This class creates the second game screen we play after
@@ -61,7 +64,11 @@ public class ColorGameScreen extends javax.swing.JFrame {
         randomizeAll();
         setGemColor();
         currentTime();
-        currentDate();        
+        currentDate();
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        mainPanel.getActionMap().put("Help", new HelpAction(center));
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        mainPanel.getActionMap().put("Close", new CloseAction(this));        
     }
     
     //method: setGemColor
@@ -225,8 +232,11 @@ public class ColorGameScreen extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(600, 400));
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel2.setToolTipText("Date and Time");
 
         date.setText("Date");
         jPanel2.add(date);
@@ -238,10 +248,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,9 +263,11 @@ public class ColorGameScreen extends javax.swing.JFrame {
         hint.setFont(new java.awt.Font("Courier 10 Pitch", 1, 48)); // NOI18N
         hint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hint.setText("ct");
+        hint.setToolTipText("What color am I?");
         hint.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         previousResult.setText("Round 1 | Previous Result: ");
+        previousResult.setToolTipText("Round and Result");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -288,6 +297,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
 
         gem1.setBackground(new java.awt.Color(255, 255, 255));
         gem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/blue_gem.jpg"))); // NOI18N
+        gem1.setToolTipText("Pick me");
         gem1.setBorder(null);
         gem1.setBorderPainted(false);
         gem1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
@@ -299,6 +309,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
 
         gem2.setBackground(new java.awt.Color(255, 255, 255));
         gem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/green_gem.jpg"))); // NOI18N
+        gem2.setToolTipText("Pick me");
         gem2.setBorder(null);
         gem2.setBorderPainted(false);
         gem2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
@@ -310,6 +321,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
 
         gem3.setBackground(new java.awt.Color(255, 255, 255));
         gem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/purple_gem.jpg"))); // NOI18N
+        gem3.setToolTipText("Pick me");
         gem3.setBorder(null);
         gem3.setBorderPainted(false);
         gem3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
@@ -321,6 +333,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
 
         gem4.setBackground(new java.awt.Color(255, 255, 255));
         gem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/red_gem.jpg"))); // NOI18N
+        gem4.setToolTipText("Pick me");
         gem4.setBorder(null);
         gem4.setBorderPainted(false);
         gem4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N
@@ -332,6 +345,7 @@ public class ColorGameScreen extends javax.swing.JFrame {
 
         gem5.setBackground(new java.awt.Color(255, 255, 255));
         gem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/yellow_gem.jpg"))); // NOI18N
+        gem5.setToolTipText("Pick me");
         gem5.setBorder(null);
         gem5.setBorderPainted(false);
         gem5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/highlighted_gem.jpg"))); // NOI18N

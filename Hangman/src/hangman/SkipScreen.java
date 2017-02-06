@@ -14,6 +14,9 @@ package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 //class: SkipScreen
 //purpose of class: This class just displays the score to the user along with an "End" button that takes them back to the menu.
@@ -31,6 +34,10 @@ public class SkipScreen extends javax.swing.JFrame {
         initComponents();
         loadScores();
         this.currentScore = currentScore;
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jLabel1.getActionMap().put("Help", new HelpAction(center));
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jLabel1.getActionMap().put("Close", new CloseAction(this));
         
         // If the current session score is greater than the lowest high score
         if ((currentScore) > rawScores[4].getScore()) {
@@ -103,12 +110,15 @@ public class SkipScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Your Score...");
+        jLabel1.setToolTipText("Better luck next time");
 
         scoreLabel.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         scoreLabel.setForeground(new java.awt.Color(255, 51, 51));
         scoreLabel.setText("0");
+        scoreLabel.setToolTipText("wow!");
 
         jButton1.setText("End");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,6 +126,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         enterName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterName.setToolTipText("A - Z");
         enterName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterNameActionPerformed(evt);
@@ -123,6 +134,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         saveButton.setText("Save Score");
+        saveButton.setToolTipText("Save?");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -130,6 +142,7 @@ public class SkipScreen extends javax.swing.JFrame {
         });
 
         instruction.setText("Enter 3 letters: ");
+        instruction.setToolTipText("A - Z");
 
         javax.swing.GroupLayout highScorePanelLayout = new javax.swing.GroupLayout(highScorePanel);
         highScorePanel.setLayout(highScorePanelLayout);
