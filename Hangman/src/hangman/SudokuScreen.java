@@ -1079,7 +1079,7 @@ public class SudokuScreen extends javax.swing.JFrame {
     }
 
     //method: addToList
-    //purpose: This adds the user's input to the userInput ArrayList
+    //purpose: This adds the user's input to the userInput ArrayList if it's correct
     private void addToList(int index, int value) {
         userInputs.add(index, value);
 
