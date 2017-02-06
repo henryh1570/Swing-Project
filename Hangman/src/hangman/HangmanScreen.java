@@ -3,8 +3,8 @@
 * author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
 * class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Swing Project v1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
 *
 * purpose: This program is a game of Hangman where users are allowed up to 6 tries
 * to guess the word correctly. 
@@ -19,11 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-
 
 //class: PlayScreen
 //purpose of class: This class is the class that takes care of all the interactions
@@ -114,7 +112,6 @@ public class HangmanScreen extends javax.swing.JFrame {
     public void displayGuessedString() {
         ColorGameScreen pSS;
         numWrong = cw.numWrongGuesses;
-        int numGuesses = cw.numGuesses;
         jLabel6.setText(guessedString);
         if (numWrong > 0 && !guess) {
             if(numWrong <= maxWrong) {
@@ -153,7 +150,6 @@ public class HangmanScreen extends javax.swing.JFrame {
             } 
         } else if (guess) {
             wrongLabel.setText("Correct!");
-            boolean win = cw.checkGuesses();
             if(cw.checkGuesses()) {
                 pSS = new ColorGameScreen(Integer.parseInt(score));
                 pSS.setVisible(true);
@@ -638,7 +634,7 @@ public class HangmanScreen extends javax.swing.JFrame {
      * the letter gets sent to the CheckWord class where it gets checked to see if the letter
      * is contained in the word.
      * @param evt 
-     ************************************************/
+     ************************************************/   
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if(evt.getActionCommand().equals("A")) {
             letter = 'a';
@@ -899,7 +895,6 @@ public class HangmanScreen extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton28ActionPerformed
 
-        
     //method: Main method
     //purpose: To run the PLayScreen class' JFrame form.
     public static void main(String args[]) {

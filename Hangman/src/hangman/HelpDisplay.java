@@ -1,22 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: HelpDisplay.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
+*
+* purpose: This class is a JFrame only meant to display when hitting F1.
+*
+****************************************************************/ 
 package hangman;
 
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
-/**
- *
- * @author hh
- */
 public class HelpDisplay extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HelpDisplay
-     */
+    //method: constructor
+    //purpose: display the help contents in a separate window.
     public HelpDisplay() {
         initComponents();
         mainPanel.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");

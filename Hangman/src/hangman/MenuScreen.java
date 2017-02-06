@@ -3,11 +3,11 @@
 * author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
 * class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Swing Project v1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
 *
-* purpose: This program is a game of Hangman where users are allowed up to 6 tries
-* to guess the word correctly. 
+* purpose: This is the menu screen that allows the player to check high scores,
+* look at credits, or play the three games.
 *
 ****************************************************************/ 
 package hangman;
@@ -17,10 +17,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
-/**
- *
- * @author hh
- */
 public class MenuScreen extends javax.swing.JFrame {
     public Point center;
 
@@ -35,7 +31,6 @@ public class MenuScreen extends javax.swing.JFrame {
         jPanel1.getActionMap().put("Close", new CloseAction(this));
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

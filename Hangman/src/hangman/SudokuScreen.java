@@ -3,8 +3,8 @@
 * author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
 * class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Swing Project v1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
 *
 * purpose: This is the third game screen. Runs directly after color game.
 *

@@ -4,10 +4,9 @@
 * class: CS 245 - Programming Graphical User Interfaces
 *
 * assignment: Swing Project v1.0
-* date last modified: 1/18/2017
+* date last modified: 2/5/2017
 *
-* purpose: This program is a game of Hangman where users are allowed up to 6 tries
-* to guess the word correctly. 
+* purpose: This class displays all the saved high scores from the game.
 *
 ****************************************************************/ 
 package hangman;

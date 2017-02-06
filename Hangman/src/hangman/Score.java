@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: Score.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
+*
+* purpose: This class is a tuple of String and int.
+*
+****************************************************************/ 
 package hangman;
 
 import java.io.Serializable;
 
-/**
- *
- * @author hh
- */
 public class Score implements Serializable {
     private final String NAME;
     private final int SCORE;
