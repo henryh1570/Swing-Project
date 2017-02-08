@@ -1,29 +1,34 @@
 /***************************************************************
 * file: MenuScreen.java
-* author: Team HOALY
-* class: CS 245 – Graphical User Interfaces
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: project 1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
 *
-* purpose: This program is the Hangman version 1.0 application.
+* purpose: This is the menu screen that allows the player to check high scores,
+* look at credits, or play the three games.
+*
 ****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
 
-/**
- * @author hh
- */
 public class MenuScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
 
-    /**
-     * Creates new form MenuScreen
-     */
+    //constructor: MenuScreen
+    //purpose: Initializes the JFrame along with center.
     public MenuScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
+        jPanel1.getInputMap().put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel1.getActionMap().put("Help", new HelpAction(center));
+        jPanel1.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel1.getActionMap().put("Close", new CloseAction(this));
     }
     
     /**
@@ -50,6 +55,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Likhan", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("PLAY");
+        jButton1.setToolTipText("Play Hangman, Colorgame, then Sudoku!");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +67,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Likhan", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("HIGHSCORES");
+        jButton2.setToolTipText("View or delete the Highscores.");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +79,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Likhan", 1, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CREDITS");
+        jButton3.setToolTipText("See who made this game.");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +89,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/emerald_many_gems_2.jpg"))); // NOI18N
         jLabel1.setText("");
+        jLabel1.setToolTipText("Shiny!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,9 +136,11 @@ public class MenuScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //method: jButton1ActionPerformed
+    //purpose: This creates the event for the "PLAY" button. Once the button is clicked, it takes the user to the PlayScreen.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("PLAY")) {
-            PlayScreen pScreen = new PlayScreen();
+            HangmanScreen pScreen = new HangmanScreen();
             pScreen.setVisible(true);
             pScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
             pScreen.setSize(600, 400);
@@ -137,6 +148,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //method: jButton2ActionPerformed
+    //purpose: This creates the event for the "HIGHSCORES" button. Once the button is clicked, it takes the user to the HighscoreScreen.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(evt.getActionCommand().equals("HIGHSCORES")) {
             HighscoreScreen hScreen = new HighscoreScreen();
@@ -147,6 +160,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //method: jButton3ActionPerformed
+    //purpose: This creates the event for the "CREDITS" button. Once the button is clicked, it takes the user to the CreditScreen.
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(evt.getActionCommand().equals("CREDITS")) {
             CreditScreen cScreen = new CreditScreen();
@@ -157,9 +172,8 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the CreditScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

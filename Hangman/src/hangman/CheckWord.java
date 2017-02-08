@@ -1,12 +1,14 @@
 /***************************************************************
 * file: CheckWord.java
-* author: Team HOALY
-* class: CS 245 – Graphical User Interfaces
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: project 1.0
+* assignment: Swing Project v1.0
 * date last modified: 1/18/2017
 *
-* purpose: This program is the Hangman version 1.0 application.
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
 ****************************************************************/ 
 package hangman;
 
@@ -14,27 +16,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author Y-Uyen
- */
+//class: CheckWord
+//purpose of class: This class checks to see if the user guesses the word and letters correctly.
 public class CheckWord {
     public int numWrongGuesses;
     public int numGuesses;
-    public WordBank wb = new WordBank();
+    public WordBank wb;
     public String wordToGuess;
-    public char guessedLetter;
     public List guessedLettersList;
     public char[] charsToGuessFormat;
     public String currentGuessedFormat="";
     public String correctlyGuessedFormat="";
     
-    public CheckWord(String word, String format) {      
+    //constructor: CheckWord
+    //purpose: Initializes the WordBank Object, along with the number of guesses and wrong guesses, as well as the format of the 
+    //hint in order to check if the user guesses correctly.
+    public CheckWord(String word, String format) {     
+        wb = new WordBank();
+        guessedLettersList = new ArrayList<Character>();
         wordToGuess = word;
         numGuesses = 0;
         numWrongGuesses = 0;
-        guessedLettersList = new ArrayList<Character>();
         String wordToGuessFormat = format;
+        
         charsToGuessFormat = wordToGuessFormat.toCharArray();
         for(int i = 0; i < charsToGuessFormat.length; i++) {
             if(charsToGuessFormat[i] == '_') {
@@ -43,6 +47,10 @@ public class CheckWord {
         }
     }
     
+    //method: checkLetter
+    //purpose: This method checks to see if the letter the user entered is correct at not. If it is,
+    //it updates the playscreen with the correctly guessed letter above the "_". If the user guesses incorrectly,
+    //it returns false, which is how PlayScreen alerts the user if their choice is incorrect.
     public boolean checkLetter(char guessedLetter) {
         boolean result = false;
 
@@ -67,6 +75,9 @@ public class CheckWord {
         return result;
     }
     
+    //method: checkGuesses
+    //purpose: This method takes what the user has guessed along with what's correct and converts the 2 into char arrays.
+    //Then, it sorts the arrays and checks to see if all of the letters are the same. If it is, the user wins, else, the user loses.
     public boolean checkGuesses() {
         char[] charsToGuess = wordToGuess.toCharArray();
         int size = guessedLettersList.size();

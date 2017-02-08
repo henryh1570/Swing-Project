@@ -1,29 +1,79 @@
 /***************************************************************
 * file: HighscoreScreen.java
-* author: Team HOALY
-* class: CS 245 – Graphical User Interfaces
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: project 1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.0
+* date last modified: 2/5/2017
 *
-* purpose: This program is the Hangman version 1.0 application.
+* purpose: This class displays all the saved high scores from the game.
+*
 ****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
-/**
- * @author hh
- */
+//class: HighscoreScreen
+//purpose: Currently, this page only displays the default values.
 public class HighscoreScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    public Point center;
+    private Score[] rawScores;
     
-    /**
-     * Creates new form CreditScreen
-     */
+    //constructor: HighscoreScreen
+    //purpose: Initializes the JFrame along with center.
     public HighscoreScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
+        loadScores();
+        jPanel2.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel2.getActionMap().put("Help", new HelpAction(center));
+        jPanel2.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel2.getActionMap().put("Close", new CloseAction(this));
+    }
+    
+    //method: loadScores
+    //purpose: dynamically load the previous high scores to view.
+    public void loadScores() {
+        ScoreSerializer sS = new ScoreSerializer();
+        
+        rawScores = sS.loadScores("scores");
+            
+        if (rawScores == null) {
+            System.out.println("Initialize Scores");
+            rawScores = new Score[5];
+            for(int i = 0; i < rawScores.length; i++) {
+                rawScores[i] = new Score("AAA", 0);
+            }
+        }
+        
+        score1.setText(rawScores[0].getName() + "..." + rawScores[0].getScore());
+        score2.setText(rawScores[1].getName() + "..." + rawScores[1].getScore());
+        score3.setText(rawScores[2].getName() + "..." + rawScores[2].getScore());
+        score4.setText(rawScores[3].getName() + "..." + rawScores[3].getScore());
+        score5.setText(rawScores[4].getName() + "..." + rawScores[4].getScore());
+    }
+    
+    //method: eraseScores
+    //purpose: delete all highscores to reset it.
+    public void eraseScores() {
+        ScoreSerializer sS = new ScoreSerializer();
+
+        System.out.println("Initialize Scores");
+        rawScores = new Score[5];
+        for(int i = 0; i < rawScores.length; i++) {
+            rawScores[i] = new Score("AAA", 0);
+        }
+        sS.saveScores("scores", rawScores);
+        
+        score1.setText(rawScores[0].getName() + "..." + rawScores[0].getScore());
+        score2.setText(rawScores[1].getName() + "..." + rawScores[1].getScore());
+        score3.setText(rawScores[2].getName() + "..." + rawScores[2].getScore());
+        score4.setText(rawScores[3].getName() + "..." + rawScores[3].getScore());
+        score5.setText(rawScores[4].getName() + "..." + rawScores[4].getScore());       
     }
 
     /**
@@ -38,6 +88,7 @@ public class HighscoreScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        eraseButton = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -48,48 +99,49 @@ public class HighscoreScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(600, 40));
 
         jButton1.setText("Back");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("ABC...00000");
-        jLabel5.setToolTipText("");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("SansSerif", 1, 48)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 153, 102));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("HIGHSCORES");
+        title.setToolTipText("All time high");
+        title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HIGHSCORES");
-        jLabel1.setToolTipText("");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        score1.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
+        score1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        score1.setText("ABC...00000");
+        score1.setToolTipText("Is this you?");
+        score1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel3.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ABC...00000");
-        jLabel3.setToolTipText("");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        score2.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
+        score2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        score2.setText("ABC...00000");
+        score2.setToolTipText("Is this you?");
+        score2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel6.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("ABC...00000");
-        jLabel6.setToolTipText("");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        score3.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
+        score3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        score3.setText("ABC...00000");
+        score3.setToolTipText("Is this you?");
+        score3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel7.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("ABC...00000");
-        jLabel7.setToolTipText("");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        score4.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
+        score4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        score4.setText("ABC...00000");
+        score4.setToolTipText("Is this you?");
+        score4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel8.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("ABC...00000");
-        jLabel8.setToolTipText("");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        score5.setFont(new java.awt.Font("DejaVu Serif", 1, 24));
+        score5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        score5.setText("ABC...00000");
+        score5.setToolTipText("Is this you?");
+        score5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,33 +149,41 @@ public class HighscoreScreen extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(score5, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score4, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(score1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(score2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(score3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(score4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addContainerGap())
+                .addComponent(score5)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        eraseButton.setText("Erase");
+        eraseButton.setToolTipText("Reset scores");
+        eraseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eraseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,25 +193,33 @@ public class HighscoreScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eraseButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 61, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(eraseButton))
                 .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //method: jButton1ActionPerformed
+    //purpose: This creates the event for the "Back" button. Once the button is clicked, it takes the user back one page.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("Back")) {
             MenuScreen mScreen = new MenuScreen();
@@ -162,9 +230,12 @@ public class HighscoreScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void eraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eraseButtonActionPerformed
+        eraseScores();
+    }//GEN-LAST:event_eraseButtonActionPerformed
+
+    //method: Main method
+    //purpose: To run the HighscoreScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -175,14 +246,15 @@ public class HighscoreScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton eraseButton;
     private javax.swing.JButton jButton1;
-    private final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel2;
-    private final javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
-    private final javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
-    private final javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
-    private final javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
-    private final javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
     private javax.swing.JPanel jPanel2;
+    private final javax.swing.JLabel score1 = new javax.swing.JLabel();
+    private final javax.swing.JLabel score2 = new javax.swing.JLabel();
+    private final javax.swing.JLabel score3 = new javax.swing.JLabel();
+    private final javax.swing.JLabel score4 = new javax.swing.JLabel();
+    private final javax.swing.JLabel score5 = new javax.swing.JLabel();
+    private final javax.swing.JLabel title = new javax.swing.JLabel();
     // End of variables declaration//GEN-END:variables
 }

@@ -1,53 +1,67 @@
 /***************************************************************
-* file: PlayScreen.java
-* author: Team HOALY
-* class: CS 245 – Graphical User Interfaces
+* file: PLayScreen.java
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: project 1.0
-* date last modified: 1/18/2017
+* assignment: Swing Project v1.3
+* date last modified: 2/5/2017
 *
-* purpose: This program is the Hangman version 1.0 application.
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
 ****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
-/**
- * @author Y-Uyen
- */
-public class PlayScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-    public WordBank wordBank;
-    public CheckWord checkWord;
+//class: PlayScreen
+//purpose of class: This class is the class that takes care of all the interactions
+//in the game. It uses the WordBank class in order to get the word and the CheckWord
+//class in order to check if the user guesses correctly.
+public class HangmanScreen extends javax.swing.JFrame {
+    public Point center;
+    public WordBank wb;
+    public CheckWord cw;
     public char letter;
     public String wordToGuess;
     public String wordToGuessFormat;
     public String guessedString;
     private int numWrong = 0;
     private final int maxWrong = 6;
-    private String score = "100";
+    private String score;
     public boolean guess;
    
-    /**
-     * Creates new form PlayScreen
-     */
-    public PlayScreen() {
-        wordBank = new WordBank();
+    
+    // constructor: PlayScreen
+    // purpose: This is the constructor and it initializes the objects and instance variables.
+    // It also calls currentTIme() and currentDate() which are needed to set the date and time in the frame.
+    // It uses "center" to always display the game window in the center of the screen.
+    public HangmanScreen() {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        wb = new WordBank();
+        score="100";
         initComponents();
         currentTime();
         currentDate();
         displayWordFormat();
+        jPanel5.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jPanel5.getActionMap().put("Help", new HelpAction(center));
+        jPanel5.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jPanel5.getActionMap().put("Close", new CloseAction(this));
     }
     
-    /**
-     * This method gets the current date and forces it to be in the form of January, 17, 2017
-     */
+   
+    //method: currentDate
+    //purpose: This method returns the current date in the Month, dd, year format.
     public void currentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat ("MMMMMMMMMMM dd, yyyy");
         Calendar cal = new GregorianCalendar();
@@ -56,9 +70,9 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel2.setText(date);
     }
 
-    /**
-     * This Method loops indefinitely to update clock every 1000 milliseconds.
-     */
+    //method: currentTime
+    //purpose: This method updates the second in the clock by having the thread resume after being
+    //put to sleep for 1 second so that it can update the seconds.
      public void currentTime() {
         Thread clock = new Thread() {
             public void run() {
@@ -78,26 +92,26 @@ public class PlayScreen extends javax.swing.JFrame {
             }
         };
         clock.start();
+        
     }
      
-    /**
-     * This method displays the "_" for each letter.
-     */
+    //method: displayWordFormat
+    //purpose: This method gets the hint, or the "_ _ _" for each word and displays it to the screen.
     public void displayWordFormat() {
-        wordToGuess = wordBank.getWord();
-        wordToGuessFormat = wordBank.getWordFormat();
-        checkWord = new CheckWord(wordToGuess, wordToGuessFormat);
+        wordToGuess = wb.getWord();
+        wordToGuessFormat = wb.getWordFormat();
+        cw = new CheckWord(wordToGuess, wordToGuessFormat);
         jLabel5.setText(wordToGuessFormat);
     }
     
-     /**
-     * This method displays correctly guessed letter for each "_".
-     * It also verifies whether or not the guess is correct and updates the score
-     * as well as changes the text from "Incorrect!" to "Correct!"
-     */
+    
+    //method: displayGuessedString
+    //purpose: This method displays correctly guessed letter for each "_".
+    //It also verifies whether or not the guess is correct and updates the score
+    //as well as changes the text from "Incorrect!" to "Correct!"
     public void displayGuessedString() {
-        SkipScreen sScreen = new SkipScreen();
-        numWrong = checkWord.numWrongGuesses;
+        ColorGameScreen pSS;
+        numWrong = cw.numWrongGuesses;
         jLabel6.setText(guessedString);
         if (numWrong > 0 && !guess) {
             if(numWrong <= maxWrong) {
@@ -125,9 +139,9 @@ public class PlayScreen extends javax.swing.JFrame {
                     case 6:
                         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/DrawingNo5.png"))); // NOI18N
                         score = "40";
-                        sScreen.setScore(score);
-                        sScreen.setVisible(true);
-                        sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+                        pSS = new ColorGameScreen(40);
+                        pSS.setVisible(true);
+                        pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                         dispose();
                         break;
                 }
@@ -136,11 +150,10 @@ public class PlayScreen extends javax.swing.JFrame {
             } 
         } else if (guess) {
             wrongLabel.setText("Correct!");
-            
-            if(checkWord.checkGuesses()) {
-                sScreen.setScore(score);
-                sScreen.setVisible(true);
-                sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            if(cw.checkGuesses()) {
+                pSS = new ColorGameScreen(Integer.parseInt(score));
+                pSS.setVisible(true);
+                pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
                 dispose();
             } 
         } 
@@ -154,6 +167,7 @@ public class PlayScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -196,33 +210,33 @@ public class PlayScreen extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Hangman");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel1.setToolTipText("Game One");
 
         jButton14.setText("Skip");
+        jButton14.setToolTipText("Go to Colorgame. Earn 0 pts.");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/Drawing.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, 190));
+        jLabel4.setToolTipText("Hang in there.");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("word to guess");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+        jLabel5.setToolTipText("Guess this word.");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
         buttonA.setText("A");
+        buttonA.setToolTipText("Pick one");
         buttonA.setPreferredSize(new java.awt.Dimension(45, 29));
         buttonA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +246,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(buttonA);
 
         jButton2.setText("B");
+        jButton2.setToolTipText("Pick one");
         jButton2.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +256,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton2);
 
         jButton3.setText("C");
+        jButton3.setToolTipText("Pick one");
         jButton3.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +266,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton3);
 
         jButton4.setText("D");
+        jButton4.setToolTipText("Pick one");
         jButton4.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +276,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton4);
 
         jButton5.setText("E");
+        jButton5.setToolTipText("Pick one");
         jButton5.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +286,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton5);
 
         jButton6.setText("F");
+        jButton6.setToolTipText("Pick one");
         jButton6.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +296,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton6);
 
         jButton7.setText("G");
+        jButton7.setToolTipText("Pick one");
         jButton7.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +306,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton7);
 
         jButton8.setText("H");
+        jButton8.setToolTipText("Pick one");
         jButton8.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +316,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton8);
 
         jButton9.setText("I");
+        jButton9.setToolTipText("Pick one");
         jButton9.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,6 +326,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton9);
 
         jButton10.setText("J");
+        jButton10.setToolTipText("Pick one");
         jButton10.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,6 +336,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton10);
 
         jButton11.setText("K");
+        jButton11.setToolTipText("Pick one");
         jButton11.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +346,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton11);
 
         jButton12.setText("L");
+        jButton12.setToolTipText("Pick one");
         jButton12.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,6 +356,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton12);
 
         jButton13.setText("M");
+        jButton13.setToolTipText("Pick one");
         jButton13.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,6 +366,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton13);
 
         jButton15.setText("N");
+        jButton15.setToolTipText("Pick one");
         jButton15.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,6 +376,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton15);
 
         jButton16.setText("O");
+        jButton16.setToolTipText("Pick one");
         jButton16.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,6 +386,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton16);
 
         jButton17.setText("P");
+        jButton17.setToolTipText("Pick one");
         jButton17.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +396,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton17);
 
         jButton18.setText("Q");
+        jButton18.setToolTipText("Pick one");
         jButton18.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,6 +406,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton18);
 
         jButton19.setText("R");
+        jButton19.setToolTipText("Pick one");
         jButton19.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,6 +416,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton19);
 
         jButton20.setText("S");
+        jButton20.setToolTipText("Pick one");
         jButton20.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,6 +426,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton20);
 
         jButton21.setText("T");
+        jButton21.setToolTipText("Pick one");
         jButton21.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,6 +436,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton21);
 
         jButton22.setText("U");
+        jButton22.setToolTipText("Pick one");
         jButton22.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,6 +446,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton22);
 
         jButton23.setText("V");
+        jButton23.setToolTipText("Pick one");
         jButton23.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,6 +456,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton23);
 
         jButton24.setText("W");
+        jButton24.setToolTipText("Pick one");
         jButton24.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,6 +466,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton24);
 
         jButton26.setText("X");
+        jButton26.setToolTipText("Pick one");
         jButton26.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,6 +476,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton26);
 
         jButton27.setText("Y");
+        jButton27.setToolTipText("Pick one");
         jButton27.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -448,6 +486,7 @@ public class PlayScreen extends javax.swing.JFrame {
         jPanel3.add(jButton27);
 
         jButton28.setText("Z");
+        jButton28.setToolTipText("Pick one");
         jButton28.setPreferredSize(new java.awt.Dimension(45, 29));
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -456,10 +495,8 @@ public class PlayScreen extends javax.swing.JFrame {
         });
         jPanel3.add(jButton28);
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 540, 110));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.setToolTipText("Date and Time");
 
         jLabel2.setText("Date");
         jPanel1.add(jLabel2);
@@ -475,59 +512,135 @@ public class PlayScreen extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 210, 40));
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setText("100");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 60, 50));
+        jLabel7.setToolTipText("Your current pts.");
 
         wrongLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         wrongLabel.setForeground(new java.awt.Color(255, 0, 0));
         wrongLabel.setText("   ");
-        getContentPane().add(wrongLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 140, 40));
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 255, 0));
         jLabel9.setText("Score:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 100, 50));
+        jLabel9.setToolTipText("Your current pts.");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(wrongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(185, 185, 185)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(90, 90, 90)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton14)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(170, 170, 170)
+                            .addComponent(jLabel4))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(140, 140, 140)
+                                    .addComponent(jLabel6))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(140, 140, 140)
+                                    .addComponent(jLabel5))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(260, 260, 260)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel1)
+                            .addGap(67, 67, 67)
+                            .addComponent(wrongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jButton14)
+                            .addGap(15, 15, 15)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(30, 30, 30)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel5)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * This method is for the skip button. When the player clicks "Skip", it will
-     * take them to the Skip Screen where it will display their score as 0 because they
-     * opted out of the game.
-     */
+    //method: jButton14ActionPerformed
+    //purpose: This method is for the skip button. When the player clicks "Skip", it will
+    //take them to the Skip Screen where it will display their score as 0 because they
+    //opted out of the game.
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if(evt.getActionCommand().equals("Skip")) {
-            SkipScreen sScreen = new SkipScreen();
-            sScreen.setScore("0");
-            sScreen.setSize(600,400);
-            sScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
-            sScreen.setVisible(true);
+            ColorGameScreen pSS = new ColorGameScreen(0);
+            pSS.setSize(600,400);
+            pSS.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+            pSS.setVisible(true);
             dispose();
-            
         }
     }//GEN-LAST:event_jButton14ActionPerformed
-    /**
+    /***********************************************
      * The rest of these methods are for the event. Once a user clicks on a letter,
      * the letter gets sent to the CheckWord class where it gets checked to see if the letter
      * is contained in the word.
      * @param evt 
-     */
+     ************************************************/   
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if(evt.getActionCommand().equals("A")) {
             letter = 'a';
             buttonA.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_buttonAActionPerformed
@@ -536,8 +649,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("B")) {
             letter = 'b';
             jButton2.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -546,8 +659,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("C")) {
             letter = 'c';
             jButton3.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -556,8 +669,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("D")) {
             letter = 'd';
             jButton4.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -566,8 +679,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("E")) {
             letter = 'e';
             jButton5.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -576,8 +689,8 @@ public class PlayScreen extends javax.swing.JFrame {
          if(evt.getActionCommand().equals("F")) {
             letter = 'f';
             jButton6.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -586,8 +699,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("G")) {
             letter = 'g';
             jButton7.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -596,8 +709,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("H")) {
             letter = 'h';
             jButton8.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -606,8 +719,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("I")) {
             letter = 'i';
             jButton9.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -616,8 +729,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("J")) {
             letter = 'j';
             jButton10.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -626,8 +739,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("K")) {
             letter = 'k';
             jButton11.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -636,8 +749,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("L")) {
             letter = 'l';
             jButton12.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         }
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -646,8 +759,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("M")) {
             letter = 'm';
             jButton13.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -656,8 +769,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("N")) {
             letter = 'n';
             jButton15.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton15ActionPerformed
@@ -666,8 +779,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("O")) {
             letter = 'o';
             jButton16.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton16ActionPerformed
@@ -676,8 +789,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("P")) {
             letter = 'p';
             jButton17.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton17ActionPerformed
@@ -686,8 +799,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Q")) {
             letter = 'q';
             jButton18.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton18ActionPerformed
@@ -696,8 +809,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("R")) {
             letter = 'r';
             jButton19.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton19ActionPerformed
@@ -706,8 +819,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("S")) {
             letter = 's';
             jButton20.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton20ActionPerformed
@@ -716,8 +829,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("T")) {
             letter = 't';
             jButton21.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton21ActionPerformed
@@ -726,8 +839,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("U")) {
             letter = 'u';
             jButton22.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton22ActionPerformed
@@ -736,8 +849,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("V")) {
             letter = 'v';
             jButton23.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton23ActionPerformed
@@ -746,8 +859,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("W")) {
             letter = 'w';
             jButton24.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton24ActionPerformed
@@ -756,8 +869,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("X")) {
             letter = 'x';
             jButton26.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton26ActionPerformed
@@ -766,8 +879,8 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Y")) {
             letter = 'y';
             jButton27.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton27ActionPerformed
@@ -776,20 +889,19 @@ public class PlayScreen extends javax.swing.JFrame {
         if(evt.getActionCommand().equals("Z")) {
             letter = 'z';
             jButton28.setEnabled(false);
-            guess = checkWord.checkLetter(letter);
-            guessedString = checkWord.correctlyGuessedFormat;
+            guess = cw.checkLetter(letter);
+            guessedString = cw.correctlyGuessedFormat;
             displayGuessedString();
         } 
     }//GEN-LAST:event_jButton28ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the PLayScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlayScreen().setVisible(true);
+                new HangmanScreen().setVisible(true);
                 
             }
         });
@@ -835,6 +947,7 @@ public class PlayScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel wrongLabel;
     // End of variables declaration//GEN-END:variables
 }

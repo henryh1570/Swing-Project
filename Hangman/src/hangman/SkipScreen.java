@@ -1,29 +1,91 @@
 /***************************************************************
 * file: SkipScreen.java
-* author: Team HOALY
-* class: CS 245 – Graphical User Interfaces
+* author: Luis Cortes, Oscar Hernandez, Henry Hu, Y-Uyen La, and An Le 
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: project 1.0
+* assignment: Swing Project v1.0
 * date last modified: 1/18/2017
 *
-* purpose: This program is the Hangman version 1.0 application.
+* purpose: This program is a game of Hangman where users are allowed up to 6 tries
+* to guess the word correctly. 
+*
 ****************************************************************/ 
 package hangman;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
-/**
- * @author Y-Uyen
- */
+//class: SkipScreen
+//purpose of class: This class just displays the score to the user along with an "End" button that takes them back to the menu.
 public class SkipScreen extends javax.swing.JFrame {
-    public Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-
-    /**
-     * Creates new form SkipScreen
-     */
-    public SkipScreen() {
+    public Point center;
+    Score[] rawScores;
+    String savedName;
+    int currentScore;
+    
+    //constructor:SkipScreen
+    //purpose: This initalizes the form as well as creating the events. It also initiliazes center which is used in order to
+    //display the game in the center of the screen.
+    public SkipScreen(int currentScore) {
+        center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         initComponents();
+        loadScores();
+        this.currentScore = currentScore;
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "Help");
+        jLabel1.getActionMap().put("Help", new HelpAction(center));
+        jLabel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close");
+        jLabel1.getActionMap().put("Close", new CloseAction(this));
+        
+        // If the current session score is greater than the lowest high score
+        if ((currentScore) > rawScores[4].getScore()) {
+            saveButton.setVisible(false);
+        } else {
+            System.out.println(currentScore);
+            System.out.println(rawScores[4].getScore());
+            highScorePanel.setVisible(false);
+        }
+    }
+    
+    public void loadScores() {
+        ScoreSerializer sS = new ScoreSerializer();        
+        rawScores = sS.loadScores("scores");
+            
+        if (rawScores == null) {
+            System.out.println("Initialize Scores");
+            rawScores = new Score[5];
+            for(int i = 0; i < rawScores.length; i++) {
+                rawScores[i] = new Score("AAA", 0);
+            }
+        }
+    }
+    
+    // Save the high scores list to a file
+    private void saveScores() {
+        ScoreSerializer sS = new ScoreSerializer();
+        sS.saveScores("scores", rawScores);
+    }
+    
+    // Newly added score will be properly positioned.
+    private void organizeScores() {
+        int i = 4;
+        while (i != 0) {
+            if (rawScores[i].getScore() > rawScores[i-1].getScore()) {
+                swapScores(i, i - 1);
+            }
+            i--;
+        }
+    }
+    
+    // Swap two scores' name and value
+    private void swapScores(int i, int j) {
+        String tempName = rawScores[i].getName();
+        int tempScore = rawScores[i].getScore();
+        
+        rawScores[i] = new Score(rawScores[j].getName(), rawScores[j].getScore());
+        rawScores[j] = new Score(tempName, tempScore);        
     }
 
     /**
@@ -36,42 +98,97 @@ public class SkipScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        highScorePanel = new javax.swing.JPanel();
+        enterName = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
+        instruction = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Your Score...");
+        jLabel1.setToolTipText("Better luck next time");
 
-        jLabel2.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel2.setText("0");
+        scoreLabel.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        scoreLabel.setForeground(new java.awt.Color(255, 51, 51));
+        scoreLabel.setText("0");
+        scoreLabel.setToolTipText("wow!");
 
         jButton1.setText("End");
+        jButton1.setToolTipText("Back to Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        enterName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterName.setToolTipText("A - Z");
+        enterName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterNameActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save Score");
+        saveButton.setToolTipText("Save?");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        instruction.setText("Enter 3 letters: ");
+        instruction.setToolTipText("A - Z");
+
+        javax.swing.GroupLayout highScorePanelLayout = new javax.swing.GroupLayout(highScorePanel);
+        highScorePanel.setLayout(highScorePanelLayout);
+        highScorePanelLayout.setHorizontalGroup(
+            highScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, highScorePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(highScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(instruction)
+                    .addGroup(highScorePanelLayout.createSequentialGroup()
+                        .addGroup(highScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enterName)
+                            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        highScorePanelLayout.setVerticalGroup(
+            highScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(highScorePanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(instruction, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveButton)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(highScorePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(175, 175, 175)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(jButton1)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                        .addGap(292, 292, 292)
+                        .addComponent(scoreLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,15 +196,23 @@ public class SkipScreen extends javax.swing.JFrame {
                 .addGap(107, 107, 107)
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
-                .addComponent(jLabel2)
-                .addGap(71, 71, 71)
-                .addComponent(jButton1)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(scoreLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(highScorePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //method: jButton1ActionPerformed
+    //puprose: This "end" button takes you back to the menu screen.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(evt.getActionCommand().equals("End")) {
             MenuScreen mScreen = new MenuScreen();
@@ -98,29 +223,68 @@ public class SkipScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // Submit a new high score, save it to the file and jump to Highscore screen.
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        rawScores[4] = new Score(savedName, currentScore);
+        organizeScores();
+        saveScores();
+        HighscoreScreen hScreen = new HighscoreScreen();
+        hScreen.setVisible(true);
+        hScreen.setBounds(center.x - 600/2, center.y - 400/2, 600, 400);
+        hScreen.setSize(600, 400);
+        dispose();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    // Submit a name to check if valid to save it to high scores file.
+    private void enterNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterNameActionPerformed
+        savedName = enterName.getText().toUpperCase();
+        saveButton.setVisible(true);
+        char[] cString = savedName.toCharArray();
+        // Limit name to 3 characters
+        if(cString.length <= 3) {
+            // Limit name to only A - Z
+            for (char c : cString) {
+                if ((c >= 'A' && c <= 'Z')) {
+                } else {
+                    saveButton.setVisible(false);
+                }
+            }
+            // Name is valid ?
+        } else {
+            saveButton.setVisible(false);
+        }
+    }//GEN-LAST:event_enterNameActionPerformed
+
+    //method: setScore
+    //purpose: This method is the access modifier to score. PlayScreen uses this method to set the score for the user.
     public void setScore(String score) {
-        this.jLabel2.setText(score);
+        this.scoreLabel.setText(score);
     }
     
+    //method: getScore
+    //purpose: This method is the access modifier to score. PlayScreen uses this method to get the score for the user.
     public String getScore() {
-        return this.jLabel2.getText();
+        return this.scoreLabel.getText();
     }
     
-    /**
-     * @param args the command line arguments
-     */
+    //method: Main method
+    //purpose: To run the SkipScreen class' JFrame form.
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SkipScreen().setVisible(true);
+                new SkipScreen(0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField enterName;
+    private javax.swing.JPanel highScorePanel;
+    private javax.swing.JLabel instruction;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
 }
