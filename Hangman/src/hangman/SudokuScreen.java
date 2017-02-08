@@ -60,7 +60,7 @@ public class SudokuScreen extends javax.swing.JFrame {
         }
       
         initComponents();
-        
+        setTitle("Sudoku");
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
         currentTime();

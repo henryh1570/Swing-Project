@@ -106,6 +106,7 @@ public class SkipScreen extends javax.swing.JFrame {
         instruction = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Final Score");
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
